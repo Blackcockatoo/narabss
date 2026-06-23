@@ -216,7 +216,7 @@ function drawSpiral(now) {
       const y = cy + Math.sin(angle) * radius * 0.55 + (z - 0.5) * canvas.height * 0.72;
       if (prev) pearlLine(prev, { x, y }, d, d === 0 ? .34 : .14);
       const size = (d === 0 ? 8 : 3.2 + d * 0.62) * scale;
-      glowDigit(x, y, size, 0.9, d === 0 || i % 9 === 0);
+      glowDigit(x, y, d, size, 0.9, d === 0 || i % 9 === 0);
       const dist = Math.hypot(mouse.x - x, mouse.y - y);
       if (dist < 19 && (!nearest || dist < nearest.dist)) nearest = { digit: d, x, y, dist };
       prev = { x, y };
@@ -224,7 +224,7 @@ function drawSpiral(now) {
   }
 
   if (nearest) {
-    glowDigit(nearest.x, nearest.y, 18 * scale, nearest.digit, .55, true);
+    glowDigit(nearest.x, nearest.y, nearest.digit, 18 * scale, .55, true);
     if (Date.now() - lastHover > 150) {
       playDigit(nearest.digit);
       lastHover = Date.now();
@@ -244,7 +244,7 @@ function drawMandala() {
     for (let i = 0; i < segments; i++) {
       const d = seq[(ring * segments + i) % seq.length];
       const a = (i / segments) * Math.PI * 2 - Math.PI / 2;
-      glowDigit(cx + Math.cos(a) * r, cy + Math.sin(a) * r, d === 0 ? 5.8 : 2.5 + d * 0.38, d, 0.88, d === 0 && ring % 2 === 0);
+      glowDigit(cx + Math.cos(a) * r, cy + Math.sin(a) * r, d, d === 0 ? 5.8 : 2.5 + d * 0.38, 0.88, d === 0 && ring % 2 === 0);
     }
   }
   ctx.strokeStyle = theme().halo;
@@ -331,7 +331,7 @@ function drawParticles(now = performance.now()) {
     for (let j = i + 1; j < particles.length; j += 5) {
       const a = particles[i], b = particles[j];
       const dist = Math.hypot(a.x - b.x, a.y - b.y);
-      if (dist < 100 && (a.digit + b.digit) % 3 === seed.length % 3) {
+      if (dist < 100) {
         ctx.globalAlpha = (100 - dist) / 420;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
@@ -352,7 +352,7 @@ function drawParticles(now = performance.now()) {
 function renderBars() {
   const bars = $('#bars');
   bars.innerHTML = sequence().slice(0, 60).map((d, i) =>
-    `<button class="bar" data-digit="${d}" title="${digitSymbol(d)} ${d} → ${NOTE_NAMES[d]}" style="height:${30 + d * 18}px;background:linear-gradient(180deg,#ffffff,${digitColor(d)},${theme().halo},#05040d);color:${digitColor(d)}"><span>${theme().symbol}${d}</span></button>`
+    `<button class="bar" data-digit="${d}" title="${digitSymbol(d)} ${d} → ${NOTE_NAMES[d]}" style="height:${30 + d * 18}px;background:linear-gradient(180deg,#ffffff,${digitColor(d)},${theme().halo})"></button>`
   ).join('');
 }
 
