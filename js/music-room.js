@@ -1,5 +1,51 @@
 const buttons = document.querySelectorAll('[data-audio]');
 
+function filename(src) {
+  try {
+    return decodeURIComponent(src.split('/').pop() || src);
+  } catch (_) {
+    return src;
+  }
+}
+
+function sourceList(audio) {
+  const raw = audio?.dataset?.sources || audio?.getAttribute('src') || '';
+  return raw
+    .split('|')
+    .map((src) => src.trim())
+    .filter(Boolean);
+}
+
+function sourceIndex(audio) {
+  const index = Number(audio.dataset.sourceIndex || 0);
+  return Number.isFinite(index) ? index : 0;
+}
+
+function setAudioSource(audio, index, status) {
+  const sources = sourceList(audio);
+  if (!sources.length) return false;
+
+  const safeIndex = Math.max(0, Math.min(index, sources.length - 1));
+  const nextSource = sources[safeIndex];
+  audio.dataset.sourceIndex = String(safeIndex);
+
+  if (audio.getAttribute('src') !== nextSource) {
+    audio.setAttribute('src', nextSource);
+    audio.load();
+  }
+
+  if (status) status.textContent = `Loading ${filename(nextSource)}...`;
+  return true;
+}
+
+function tryNextSource(audio, status) {
+  const sources = sourceList(audio);
+  const nextIndex = sourceIndex(audio) + 1;
+  if (nextIndex >= sources.length) return false;
+  setAudioSource(audio, nextIndex, status);
+  return true;
+}
+
 function resetButton(button) {
   if (!button) return;
   button.textContent = button.dataset.audio.endsWith('1') ? '▶ Play Song 1' : '▶ Play Song 2';
@@ -7,8 +53,29 @@ function resetButton(button) {
 
 function pauseOtherSongs(currentAudio) {
   document.querySelectorAll('audio').forEach((audio) => {
-    if (audio !== currentAudio) audio.pause();
+    if (audio !== currentAudio && !audio.paused) {
+      audio.pause();
+      resetButton(document.querySelector(`[data-audio="${audio.id}"]`));
+    }
   });
+}
+
+async function playWithFallback(audio, status) {
+  const sources = sourceList(audio);
+  if (!sources.length) throw new Error('No MP3 source found.');
+
+  let attempts = 0;
+  while (attempts < sources.length) {
+    try {
+      await audio.play();
+      return true;
+    } catch (error) {
+      if (error && error.name === 'NotAllowedError') throw error;
+      if (!tryNextSource(audio, status)) throw error;
+      attempts += 1;
+    }
+  }
+  return false;
 }
 
 buttons.forEach((button) => {
@@ -17,14 +84,16 @@ buttons.forEach((button) => {
 
   if (!audio) return;
 
+  setAudioSource(audio, 0, status);
+
   audio.addEventListener('loadedmetadata', () => {
-    if (status) status.textContent = 'Ready to play Nara’s MP3.';
+    if (status) status.textContent = `Ready: ${filename(audio.getAttribute('src'))}`;
   });
 
   audio.addEventListener('play', () => {
     pauseOtherSongs(audio);
     button.textContent = '⏸ Pause';
-    if (status) status.textContent = 'Playing Nara’s MP3.';
+    if (status) status.textContent = `Playing ${filename(audio.getAttribute('src'))}`;
   });
 
   audio.addEventListener('pause', () => {
@@ -38,9 +107,10 @@ buttons.forEach((button) => {
   });
 
   audio.addEventListener('error', () => {
+    if (tryNextSource(audio, status)) return;
     resetButton(button);
     if (status) {
-      status.textContent = `Could not load ${audio.getAttribute('src')}. Check the committed MP3 file name.`;
+      status.textContent = 'Could not load any committed MP3 source. Check the file names in the repo.';
     }
   });
 
@@ -48,14 +118,14 @@ buttons.forEach((button) => {
     try {
       if (audio.paused) {
         pauseOtherSongs(audio);
-        await audio.play();
+        await playWithFallback(audio, status);
       } else {
         audio.pause();
       }
     } catch (error) {
       resetButton(button);
       if (status) {
-        status.textContent = `Could not play ${audio.getAttribute('src')}. Browser may still be loading it.`;
+        status.textContent = 'Could not play yet. Tap the native audio control below, or check the MP3 file names.';
       }
     }
   });
