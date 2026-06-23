@@ -41,7 +41,7 @@
     <section class="section" id="songs">
       <div class="section-title">
         <h2>Nara wrote this.</h2>
-        <span class="badge">2 songs</span>
+        <span class="badge">2 MP3 songs</span>
       </div>
       <div class="song-grid">
         <article class="song-card fire-card">
@@ -49,15 +49,15 @@
             <div class="song-icon" aria-hidden="true">🔥</div>
             <div>
               <h3>Lost in the Fire</h3>
-              <span class="tag">Version 1</span><span class="tag">Written by Nara</span>
+              <span class="tag">MP3 1</span><span class="tag">Written by Nara</span>
             </div>
           </div>
           <p>A colour-along fire song for the Music Room. Soft enough for drawing, big enough for the Dino Cave.</p>
           <div class="credit-line">Written by Nara • Blue Snake Studios Junior</div>
           <div class="song-player">
             <button class="button primary play-button" data-audio="lost-fire-1">▶ Play Song 1</button>
-            <audio id="lost-fire-1" preload="none" src="assets/audio/lost-in-the-fire-nara-01.mp3"></audio>
-            <div class="song-status" data-status="lost-fire-1"></div>
+            <audio id="lost-fire-1" preload="metadata" src="assets/audio/lost-in-the-fire-nara-01.mp3"></audio>
+            <div class="song-status" data-status="lost-fire-1">Ready for: lost-in-the-fire-nara-01.mp3</div>
           </div>
         </article>
 
@@ -66,15 +66,15 @@
             <div class="song-icon" aria-hidden="true">🎧</div>
             <div>
               <h3>Lost in the Fire</h3>
-              <span class="tag">Version 2</span><span class="tag">Written by Nara</span>
+              <span class="tag">MP3 2</span><span class="tag">Written by Nara</span>
             </div>
           </div>
           <p>The second version for comparing the vibe, choosing the best one, or using both as colour-along tracks.</p>
           <div class="credit-line">Written by Nara • Blue Snake Studios Junior</div>
           <div class="song-player">
             <button class="button blue play-button" data-audio="lost-fire-2">▶ Play Song 2</button>
-            <audio id="lost-fire-2" preload="none" src="assets/audio/lost-in-the-fire-nara-02.mp3"></audio>
-            <div class="song-status" data-status="lost-fire-2"></div>
+            <audio id="lost-fire-2" preload="metadata" src="assets/audio/lost-in-the-fire-nara-02.mp3"></audio>
+            <div class="song-status" data-status="lost-fire-2">Ready for: lost-in-the-fire-nara-02.mp3</div>
           </div>
         </article>
       </div>
@@ -82,8 +82,8 @@
 
     <section class="music-footer">
       <h2>Music Room note</h2>
-      <p class="sub">No autoplay, no ads, no comments. Just Nara’s songs, play buttons, and a safe little studio credit.</p>
-      <p class="song-note">The buttons now play a built-in web demo if the MP3 files are missing. For the real recordings, add <code>assets/audio/lost-in-the-fire-nara-01.mp3</code> and <code>assets/audio/lost-in-the-fire-nara-02.mp3</code>.</p>
+      <p class="sub">No random fallback songs. No generated demo. These two buttons are locked to the two real Lost in the Fire MP3 files only.</p>
+      <p class="song-note">Required files: <code>assets/audio/lost-in-the-fire-nara-01.mp3</code> and <code>assets/audio/lost-in-the-fire-nara-02.mp3</code>.</p>
     </section>
     <p class="footer-note">Nara's Colour Quest • Music Room • Dad-built, kid-powered.</p>
   </main>
