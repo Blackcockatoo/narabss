@@ -29,6 +29,13 @@
       font-size:15px;font-family:inherit;transition:box-shadow .15s}
     .btn:hover{box-shadow:0 0 22px rgba(51,170,255,.5)}
     .controls{text-align:center;margin-top:12px;font-size:13px;color:var(--ink-dim);font-weight:700}
+    .dpad{display:grid;grid-template-columns:repeat(3,72px);grid-template-rows:repeat(3,72px);
+      gap:8px;margin:14px auto 0;width:fit-content}
+    .dpad-btn{width:72px;height:72px;border-radius:16px;border:1.5px solid var(--blue);
+      background:rgba(51,170,255,.12);color:var(--blue);font-size:24px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;touch-action:manipulation;
+      transition:background .1s;-webkit-tap-highlight-color:transparent;font-family:inherit;user-select:none}
+    .dpad-btn:active{background:rgba(51,170,255,.35)}
   </style>
   <link rel="stylesheet" href="../../css/game.css">
 </head>
@@ -52,7 +59,13 @@
         <button class="btn" onclick="startGame()">▶ Start Slithering</button>
       </div>
     </div>
-    <p class="controls">Arrow keys or WASD to turn · Swipe on mobile</p>
+    <div class="dpad" aria-label="Direction controls">
+      <button class="dpad-btn" id="dUp" style="grid-column:2;grid-row:1">▲</button>
+      <button class="dpad-btn" id="dLeft" style="grid-column:1;grid-row:2">◄</button>
+      <button class="dpad-btn" id="dRight" style="grid-column:3;grid-row:2">►</button>
+      <button class="dpad-btn" id="dDown" style="grid-column:2;grid-row:3">▼</button>
+    </div>
+    <p class="controls">Arrow keys · WASD · Swipe · or use buttons above</p>
   </div>
   <script>
     const c = document.getElementById('c');
@@ -135,6 +148,14 @@
       if(nextDir.x===-dir.x&&nextDir.y===-dir.y) nextDir={...dir};
       touchStart=null;
     });
+
+    function steer(d) {
+      if (d && !(d.x===-dir.x && d.y===-dir.y)) nextDir = d;
+    }
+    document.getElementById('dUp').addEventListener('pointerdown', e=>{ e.preventDefault(); steer({x:0,y:-1}); });
+    document.getElementById('dDown').addEventListener('pointerdown', e=>{ e.preventDefault(); steer({x:0,y:1}); });
+    document.getElementById('dLeft').addEventListener('pointerdown', e=>{ e.preventDefault(); steer({x:-1,y:0}); });
+    document.getElementById('dRight').addEventListener('pointerdown', e=>{ e.preventDefault(); steer({x:1,y:0}); });
 
     function draw() {
       ctx.clearRect(0,0,W,H);
