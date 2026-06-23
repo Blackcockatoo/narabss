@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Peacock Digital DNA Mark</title>
+  <desc id="desc">A pearlescent peacock metallic Digital DNA mark for Blue Snake Studios Junior.</desc>
+  <defs>
+    <radialGradient id="pearl" cx="42%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.22" stop-color="#a8fff4"/>
+      <stop offset="0.46" stop-color="#33aaff"/>
+      <stop offset="0.7" stop-color="#5b2cff"/>
+      <stop offset="1" stop-color="#050510"/>
+    </radialGradient>
+    <linearGradient id="metal" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff334d"/>
+      <stop offset="0.33" stop-color="#050510"/>
+      <stop offset="0.66" stop-color="#33aaff"/>
+      <stop offset="1" stop-color="#ffcc44"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="1000" rx="190" fill="#050510"/>
+  <circle cx="500" cy="500" r="392" fill="url(#pearl)" opacity="0.22"/>
+  <path d="M500 144c88 104 132 198 132 282 0 64-27 113-83 148 90 8 160 55 211 142-117-6-205-43-263-111-58 68-146 105-263 111 51-87 121-134 211-142-56-35-83-84-83-148 0-84 44-178 138-282z" fill="url(#metal)" filter="url(#glow)"/>
+  <circle cx="500" cy="430" r="92" fill="#050510" stroke="#a8fff4" stroke-width="18"/>
+  <circle cx="500" cy="430" r="34" fill="#ffcc44"/>
+  <path d="M352 250c-87 69-133 144-139 225m435-225c87 69 133 144 139 225M266 665c79 94 157 145 234 153 77-8 155-59 234-153" fill="none" stroke="#e8d4b8" stroke-opacity="0.62" stroke-width="18" stroke-linecap="round"/>
+  <text x="500" y="918" text-anchor="middle" font-family="Arial Black, system-ui, sans-serif" font-size="64" fill="#e8d4b8" letter-spacing="7">DIGITAL DNA</text>
+</svg>
