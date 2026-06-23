@@ -362,6 +362,7 @@ function setMode(next) {
   $('#canvasPanel').classList.toggle('hidden', mode === 'sound' || mode === 'journey');
   $('#soundPanel').classList.toggle('hidden', mode !== 'sound');
   $('#journeyPanel').classList.toggle('hidden', mode !== 'journey');
+  $('#clearPaintBtn').classList.toggle('hidden', mode !== 'mandala');
   const titles = {
     spiral: ['🌀 Spinning Spiral', 'Move your mouse over the dots to hear sounds.'],
     mandala: ['🎨 Colour Mandala', 'Click and drag to paint your own colour marks onto the pattern.'],
@@ -392,9 +393,7 @@ function updateSeedDisplay() {
 function updateOutputs() {
   $('#harmonyOut').textContent = harmony;
   $('#awarenessOut').textContent = `${awareness}%`;
-  $('#tempoOut').textContent = `${tempo} BPM`;
-  $('#fixedHarmony').textContent = harmony;
-  $('#fixedAwareness').textContent = `${awareness}%`;
+  $('#tempoOut').textContent = tempo;
   updateSeedDisplay();
 }
 
