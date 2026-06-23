@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beat Maker Lab — Nara's Colour Quest</title>
+  <meta name="description" content="A kid-safe Baby B$S beat maker with pads, step sequencer and funny creature sounds.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="lab-shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html"><span class="mark">$</span><span>Beat Maker Lab<br><small>Nara's Colour Quest</small></span></a>
+      <nav class="nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../games/rex-rhythm/index.html">Rex Rhythm</a>
+        <a href="../../games/dino-dash/index.html">Dino Dash</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="kicker">Tiny loops • no saving • just play</p>
+        <h1>Make the creature beat.</h1>
+        <p>Tap pads, paint steps, twist pitch, echo, fuzz and space. Press play and let Gameasaurus test the cave speakers.</p>
+        <div class="transport">
+          <button id="playBtn" class="big primary">▶ Play</button>
+          <button id="stopBtn" class="big">■ Stop</button>
+          <button id="clearBtn" class="big danger">Clear</button>
+          <button id="randomBtn" class="big blue">Magic Fill</button>
+        </div>
+      </div>
+      <div class="rex-console" aria-hidden="true">
+        <div class="headphones"></div>
+        <div class="rex-face">🦖</div>
+        <div class="meter"><span id="roarMeter"></span></div>
+        <p>ROAR METER</p>
+      </div>
+    </section>
+
+    <section class="controls panel">
+      <label>BPM <output id="bpmOut">104</output><input id="bpm" type="range" min="60" max="170" value="104"></label>
+      <label>Pitch <output id="pitchOut">0</output><input id="pitch" type="range" min="-12" max="12" value="0"></label>
+      <label>Echo <output id="echoOut">25</output><input id="echo" type="range" min="0" max="90" value="25"></label>
+      <label>Fuzz <output id="fuzzOut">12</output><input id="fuzz" type="range" min="0" max="80" value="12"></label>
+      <label>Space <output id="spaceOut">20</output><input id="space" type="range" min="0" max="80" value="20"></label>
+      <label>Swing <output id="swingOut">8</output><input id="swing" type="range" min="0" max="40" value="8"></label>
+    </section>
+
+    <section class="panel">
+      <div class="section-title"><h2>Sound Pads</h2><p>Tap one any time. Paint the grid below to sequence.</p></div>
+      <div id="pads" class="pads" aria-label="Sound pads"></div>
+    </section>
+
+    <section class="panel sequence-panel">
+      <div class="section-title"><h2>8-Step Creature Loop</h2><p>Click dots to turn sounds on/off.</p></div>
+      <div class="step-head" id="stepHead"></div>
+      <div id="sequencer" class="sequencer" aria-label="Step sequencer"></div>
+    </section>
+
+    <section class="panel recipe">
+      <h2>Kid Mode Recipes</h2>
+      <div class="recipe-grid">
+        <button data-recipe="dino">Dino Stomp</button>
+        <button data-recipe="snake">Snake Wiggle</button>
+        <button data-recipe="cat">Cat Couch Bounce</button>
+        <button data-recipe="space">Space Feathers</button>
+      </div>
+      <p class="smallprint">Nothing is uploaded or saved. Refresh to reset the lab.</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
