@@ -76,6 +76,7 @@ body::before{
   background:var(--card);text-decoration:none;
   box-shadow:0 0 10px rgba(100,70,220,0.15);
   font-weight:800;color:var(--ink);transition:border-color .15s,box-shadow .15s,transform .12s;
+  min-height:44px;display:inline-flex;align-items:center;
 }
 .nav a:hover{
   border-color:var(--blue);transform:translateY(-2px);
