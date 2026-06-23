@@ -1,0 +1,57 @@
+/* Shared mobile & touch optimisations — loaded by every game/app page */
+
+/* ── Touch-friendly back / home link ─────────────────────────────── */
+a.brand {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(100, 70, 220, 0.32);
+  background: rgba(19, 16, 42, 0.7);
+  font-size: 14px;
+  touch-action: manipulation;
+  transition: box-shadow 0.15s;
+}
+a.brand:active,
+a.brand:focus-visible {
+  box-shadow: 0 0 18px rgba(51, 170, 255, 0.55);
+  outline: none;
+}
+
+/* ── Canvas: stop page scroll taking over while playing ──────────── */
+canvas {
+  touch-action: none;
+}
+
+/* ── Remove 300ms tap delay everywhere ───────────────────────────── */
+button, a, input, select, textarea, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* ── Overlay / start buttons — finger-sized ──────────────────────── */
+.btn {
+  min-height: 52px;
+  padding: 14px 32px;
+}
+
+/* ── Score / meta rows wrap on narrow screens ────────────────────── */
+.score-row, .meta {
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+/* ── Small-screen tweaks ─────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .shell {
+    padding: 14px 12px 36px;
+  }
+  .topbar {
+    padding: 0 0 14px;
+  }
+  .controls {
+    font-size: 12px;
+    line-height: 1.6;
+    padding: 0 4px;
+  }
+}

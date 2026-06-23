@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Digital DNA Hub — Peacock Metallic Upgrade</title>
-  <meta name="description" content="A Blue Snake Studios Junior Digital DNA visual and sound toy with peacock metallic digit logic, conscious particles, helix, mandala and sound modes.">
-  <link rel="stylesheet" href="style.css?v=peacock-v2">
+  <title>Colour Pattern Art — Digital DNA</title>
+  <meta name="description" content="A Blue Snake Studios Junior pattern art toy. Pick Red, Black or Blue and watch spirals, mandalas and bouncing dots paint themselves from number patterns.">
   <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css?v=peacock-v2">
 </head>
 <body>
   <main class="shell">
     <header class="topbar">
       <a class="brand" href="../../index.html" aria-label="Nara's Colour Quest home">
         <span class="mark">DNA</span>
-        <span>Digital DNA Hub<br><small>Peacock Metallic v2</small></span>
+        <span>DNA Pattern Art<br><small>Colour Quest</small></span>
       </a>
       <nav class="nav" aria-label="Main navigation">
         <a href="../../index.html">Home</a>
@@ -25,90 +25,89 @@
 
     <section class="hero upgrade-hero">
       <div>
-        <p class="kicker">Digital DNA • Visible Peacock Upgrade</p>
-        <h1>Touch the metallic number song.</h1>
-        <p class="sub">Red, Black and Blue are no longer plain dots. Each strand now has its own symbol, pearlescent peacock-metal digit logic, a special 0 pearl gate, and conscious particles that orbit, gather and resist your cursor.</p>
+        <p class="kicker">Digital DNA • Colour Pattern Art</p>
+        <h1>Make a colour pattern.</h1>
+        <p class="sub">Pick Red, Black or Blue and watch the numbers make spinning spirals, colour mandalas and bouncing dots. Move your mouse to play with the dots. Tap a bar to hear a note.</p>
         <div class="button-row">
-          <button class="btn primary" id="playDnaBtn" type="button">▶ Play DNA</button>
-          <button class="btn blue" type="button" data-mode="particles">Conscious Particles</button>
-          <button class="btn purple" type="button" data-mode="spiral">Metallic Helix</button>
+          <button class="btn primary" id="playDnaBtn" type="button">▶ Play sounds</button>
+          <button class="btn blue" type="button" data-mode="particles">Dot Storm</button>
+          <button class="btn purple" type="button" data-mode="spiral">Spinning Spiral</button>
         </div>
       </div>
       <div class="orb upgrade-orb" aria-hidden="true">
         <div id="seedSymbol" class="seed-symbol">☉ 🔥</div>
-        <strong id="seedName">Ruby Peacock Fire</strong>
-        <span>0 pearl • 1–9 feather metal</span>
+        <strong id="seedName">Red Pattern</strong>
+        <span>numbers make colours</span>
       </div>
     </section>
 
     <section class="section panel upgrade-panel">
       <div>
-        <p class="kicker">Upgrade is active</p>
-        <h2>Peacock Metallic Digit Logic</h2>
-        <p id="seedMantra" class="sub">0 is the pearl gate. 1–9 flare into red-gold peacock metal.</p>
+        <p class="kicker">Pattern note</p>
+        <h2>Colour Pattern Art</h2>
+        <p id="seedMantra" class="sub">Red starts at zero and climbs through warm fire colours.</p>
       </div>
       <div class="logic-grid" aria-label="Digit logic notes">
-        <article><b>◎</b><strong>Digit 0</strong><span>Pearl gate / reset symbol</span></article>
-        <article><b>☉</b><strong>Red strand</strong><span>Ruby fire peacock metal</span></article>
-        <article><b>◈</b><strong>Black strand</strong><span>Obsidian mirror peacock metal</span></article>
-        <article><b>✺</b><strong>Blue strand</strong><span>Sapphire water peacock metal</span></article>
+        <article><b>◎</b><strong>Zero</strong><span>The big glowing dot</span></article>
+        <article><b>☉</b><strong>Red</strong><span>Warm fire colours</span></article>
+        <article><b>◈</b><strong>Black</strong><span>Cool night colours</span></article>
+        <article><b>✺</b><strong>Blue</strong><span>Ocean water colours</span></article>
       </div>
     </section>
 
     <section class="section panel">
       <div class="mode-grid" aria-label="Digital DNA mode selector">
-        <button class="btn mode-btn" data-mode="spiral" type="button"><b>🌀</b><strong>Metallic Helix</strong><span>hover pearl digits</span></button>
-        <button class="btn mode-btn" data-mode="mandala" type="button"><b>🔮</b><strong>Peacock Mandala</strong><span>paint metal marks</span></button>
-        <button class="btn mode-btn" data-mode="particles" type="button"><b>✨</b><strong>Conscious Particles</strong><span>alive field</span></button>
-        <button class="btn mode-btn" data-mode="sound" type="button"><b>🎵</b><strong>Sound Temple</strong><span>tap symbol bars</span></button>
-        <button class="btn mode-btn" data-mode="journey" type="button"><b>🧭</b><strong>Journey</strong><span>follow path</span></button>
+        <button class="btn mode-btn" data-mode="spiral" type="button"><b>🌀</b><strong>Spinning Spiral</strong><span>move mouse over dots</span></button>
+        <button class="btn mode-btn" data-mode="mandala" type="button"><b>🎨</b><strong>Colour Mandala</strong><span>click and drag to paint</span></button>
+        <button class="btn mode-btn" data-mode="particles" type="button"><b>✨</b><strong>Dot Storm</strong><span>move mouse, dots follow</span></button>
+        <button class="btn mode-btn" data-mode="sound" type="button"><b>🎵</b><strong>Sound Play</strong><span>tap the colour bars</span></button>
+        <button class="btn mode-btn" data-mode="journey" type="button"><b>🧭</b><strong>Guide</strong><span>how to play</span></button>
       </div>
     </section>
 
     <section class="section panel stage" id="canvasPanel">
       <div class="stage-title">
-        <div><h2 id="stageTitle">🌀 Metallic DNA Helix</h2><p id="stageDesc">Move over the pearl and feather digits to hear their tone.</p></div>
+        <div><h2 id="stageTitle">🌀 Spinning Spiral</h2><p id="stageDesc">Move your mouse over the dots to hear sounds.</p></div>
         <button class="btn purple" id="clearPaintBtn" type="button">Clear Paint</button>
       </div>
       <div class="canvas-wrap"><canvas id="dnaCanvas" width="900" height="560"></canvas></div>
     </section>
 
     <section class="section panel hidden" id="soundPanel">
-      <div class="stage-title"><div><h2>🎵 Sound Temple</h2><p>Tap a metallic digit bar to hear its note, or press Play DNA for the 60-step sequence.</p></div></div>
+      <div class="stage-title"><div><h2>🎵 Sound Play</h2><p>Tap a colour bar to hear its note. Press Play sounds for the full sequence.</p></div></div>
       <div class="bars" id="bars"></div>
     </section>
 
     <section class="section panel hidden" id="journeyPanel">
-      <div class="stage-title"><div><h2>🧭 Guided Journey</h2><p>Walk the same idea as the uploaded hub: choose the strand, rhythm, awareness, harmony, then enter a mode.</p></div></div>
+      <div class="stage-title"><div><h2>🧭 How to play</h2><p>A quick guide to the four things you can do.</p></div></div>
       <div class="journey">
-        <article class="journey-card"><h3>1. Awaken the Pearl</h3><p>Digit 0 is now a pearl gate. It glows brighter than the other digits and acts like the reset / opening symbol.</p></article>
-        <article class="journey-card"><h3>2. Choose the Strand</h3><p>Red, Black and Blue each have their own symbolic metallic peacock skin and sound colour.</p></article>
-        <article class="journey-card"><h3>3. Deepen Awareness</h3><p>Awareness changes how strongly the conscious particles notice your cursor, gather, orbit, resist and reconnect.</p></article>
-        <article class="journey-card"><h3>4. Tune Harmony</h3><p>Harmony changes spiral arms, mandala symmetry and the feel of the living field.</p></article>
+        <article class="journey-card"><h3>1. Pick a colour</h3><p>Tap Red, Black or Blue at the bottom. Each one makes a different set of colours and sounds.</p></article>
+        <article class="journey-card"><h3>2. Choose a view</h3><p>Try Spinning Spiral, Colour Mandala or Dot Storm. Each view shows the same number pattern in a different way.</p></article>
+        <article class="journey-card"><h3>3. Play with the dots</h3><p>In Dot Storm, move your mouse and the dots will follow, bounce and connect. Energy makes them react more.</p></article>
+        <article class="journey-card"><h3>4. Paint the mandala</h3><p>In Colour Mandala, click and drag to draw your own colour marks on top of the pattern.</p></article>
       </div>
     </section>
 
     <section class="section panel fixed-controls">
       <div class="controls">
         <div class="control seed-control">
-          <span>DNA Seed</span>
+          <span>Pick a colour</span>
           <div class="seed-row">
-            <button class="seed-btn seed-red active" data-seed="red" type="button" title="Ruby Peacock Fire"><b>☉</b><small>Red</small></button>
-            <button class="seed-btn seed-black" data-seed="black" type="button" title="Obsidian Peacock Mirror"><b>◈</b><small>Black</small></button>
-            <button class="seed-btn seed-blue" data-seed="blue" type="button" title="Sapphire Peacock Water"><b>✺</b><small>Blue</small></button>
+            <button class="seed-btn seed-red active" data-seed="red" type="button" title="Red Pattern"><b>☉</b><small>Red</small></button>
+            <button class="seed-btn seed-black" data-seed="black" type="button" title="Black Pattern"><b>◈</b><small>Black</small></button>
+            <button class="seed-btn seed-blue" data-seed="blue" type="button" title="Blue Pattern"><b>✺</b><small>Blue</small></button>
           </div>
         </div>
-        <label class="control">Harmony <output id="harmonyOut">7</output><input id="harmony" type="range" min="3" max="12" value="7"></label>
-        <label class="control">Awareness <output id="awarenessOut">50%</output><input id="awareness" type="range" min="0" max="100" value="50"></label>
-        <label class="control">Tempo <output id="tempoOut">120 BPM</output><input id="tempo" type="range" min="60" max="180" value="120"></label>
-        <div class="control"><span>Live</span><strong><span id="fixedHarmony">7</span> arms • <span id="fixedAwareness">50%</span></strong></div>
+        <label class="control">Arms <output id="harmonyOut">7</output><input id="harmony" type="range" min="3" max="12" value="7"></label>
+        <label class="control">Energy <output id="awarenessOut">50%</output><input id="awareness" type="range" min="0" max="100" value="50"></label>
+        <label class="control">Speed <output id="tempoOut">120</output><input id="tempo" type="range" min="60" max="180" value="120"></label>
       </div>
     </section>
 
     <section class="section panel">
       <details open>
-        <summary class="kicker" style="cursor:pointer">About this upgraded experience</summary>
-        <p class="smallprint">Adapted from the uploaded DigitalDNAHub React concept into a static HTML/Canvas/Web Audio page for this app. The Red, Black and Blue 60-digit seeds now drive peacock metallic colours, symbols, sound tones and a stronger conscious particle field. Choose your seed, paint on the mandala, guide the particles with your cursor, and play the 60-note digital dharma.</p>
+        <summary class="kicker" style="cursor:pointer">About DNA Pattern Art</summary>
+        <p class="smallprint">Three 60-number sequences (Red, Black, Blue) turn into coloured dots, spinning spirals, mandalas and sounds. Pick your colour, paint on the mandala, move your mouse through the dots, and tap the bars to hear the notes. Dad-built, kid-powered.</p>
       </details>
     </section>
   </main>

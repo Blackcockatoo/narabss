@@ -37,11 +37,13 @@
     @keyframes wrongShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
     #status{font-size:15px;font-weight:800;color:var(--ink-dim);min-height:24px}
     #level{font-size:13px;font-weight:900;color:var(--gold)}
+    @media(max-width:420px){.pads{gap:8px}.pad{width:68px;height:68px;font-size:24px}.stage{padding:20px 10px}}
     .btn{padding:12px 32px;border-radius:999px;border:1.5px solid var(--gold);
       background:rgba(255,204,68,.1);color:var(--gold);font-weight:900;cursor:pointer;
       font-size:15px;font-family:inherit;transition:box-shadow .15s}
     .btn:hover{box-shadow:0 0 22px rgba(255,204,68,.5)}
   </style>
+  <link rel="stylesheet" href="../../css/game.css">
 </head>
 <body>
   <div class="shell">

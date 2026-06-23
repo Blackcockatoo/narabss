@@ -8,9 +8,9 @@ const THEMES = {
   red: {
     symbol: '☉',
     mark: '🔥',
-    name: 'Ruby Peacock Fire',
-    short: 'Fire Pearl',
-    mantra: '0 is the pearl gate. 1–9 flare into red-gold peacock metal.',
+    name: 'Red Pattern',
+    short: 'Red',
+    mantra: 'Red starts at zero and climbs through warm fire colours.',
     aura: 'rgba(255, 57, 110, .22)',
     halo: '#ff3f7f',
     line: 'rgba(255, 214, 107, .24)',
@@ -19,9 +19,9 @@ const THEMES = {
   black: {
     symbol: '◈',
     mark: '🪞',
-    name: 'Obsidian Peacock Mirror',
-    short: 'Black Mirror',
-    mantra: '0 is the pearl mirror. 1–9 shimmer as oil-black feather metal.',
+    name: 'Black Pattern',
+    short: 'Black',
+    mantra: 'Black starts at zero and moves through cool night colours.',
     aura: 'rgba(24, 240, 255, .18)',
     halo: '#18f0ff',
     line: 'rgba(216, 255, 253, .2)',
@@ -30,9 +30,9 @@ const THEMES = {
   blue: {
     symbol: '✺',
     mark: '💧',
-    name: 'Sapphire Peacock Water',
-    short: 'Blue Feather',
-    mantra: '0 is the pearl drop. 1–9 ripple into blue-green peacock metal.',
+    name: 'Blue Pattern',
+    short: 'Blue',
+    mantra: 'Blue starts at zero and ripples through ocean water colours.',
     aura: 'rgba(51, 170, 255, .22)',
     halo: '#33aaff',
     line: 'rgba(126, 245, 255, .24)',
@@ -165,14 +165,14 @@ function playSequence() {
   initAudio();
   if (playing) return;
   playing = true;
-  $('#playDnaBtn').textContent = '🎵 Playing';
+  $('#playDnaBtn').textContent = '🎵 Playing...';
   const seq = sequence().slice(0, 60);
   const step = 60 / tempo;
   const now = audioCtx.currentTime + 0.06;
   seq.forEach((d, i) => playDigit(d, now + i * step, step * 0.72));
   setTimeout(() => {
     playing = false;
-    $('#playDnaBtn').textContent = '▶ Play DNA';
+    $('#playDnaBtn').textContent = '▶ Play sounds';
   }, seq.length * step * 1000 + 160);
 }
 
@@ -345,7 +345,7 @@ function drawParticles(now = performance.now()) {
   ctx.save();
   ctx.fillStyle = 'rgba(255,255,255,.72)';
   ctx.font = '800 12px system-ui';
-  ctx.fillText(`Conscious field: ${theme().symbol} ${awareness}% awareness`, 16, canvas.height - 18);
+  ctx.fillText(`Dot energy: ${theme().symbol} ${awareness}%`, 16, canvas.height - 18);
   ctx.restore();
 }
 
@@ -362,10 +362,11 @@ function setMode(next) {
   $('#canvasPanel').classList.toggle('hidden', mode === 'sound' || mode === 'journey');
   $('#soundPanel').classList.toggle('hidden', mode !== 'sound');
   $('#journeyPanel').classList.toggle('hidden', mode !== 'journey');
+  $('#clearPaintBtn').classList.toggle('hidden', mode !== 'mandala');
   const titles = {
-    spiral: ['🌀 Metallic DNA Helix', 'Move over the pearl and feather digits to hear their tone.'],
-    mandala: ['🔮 Peacock Mandala', 'Click and drag to paint pearlescent intention marks onto the pattern.'],
-    particles: ['✨ Conscious Particle Field', 'Move the cursor: the digits notice, orbit, gather, resist and reconnect.'],
+    spiral: ['🌀 Spinning Spiral', 'Move your mouse over the dots to hear sounds.'],
+    mandala: ['🎨 Colour Mandala', 'Click and drag to paint your own colour marks onto the pattern.'],
+    particles: ['✨ Dot Storm', 'Move your cursor — the dots follow you.'],
   };
   if (titles[mode]) {
     $('#stageTitle').textContent = titles[mode][0];
@@ -392,9 +393,7 @@ function updateSeedDisplay() {
 function updateOutputs() {
   $('#harmonyOut').textContent = harmony;
   $('#awarenessOut').textContent = `${awareness}%`;
-  $('#tempoOut').textContent = `${tempo} BPM`;
-  $('#fixedHarmony').textContent = harmony;
-  $('#fixedAwareness').textContent = `${awareness}%`;
+  $('#tempoOut').textContent = tempo;
   updateSeedDisplay();
 }
 

@@ -76,6 +76,7 @@ body::before{
   background:var(--card);text-decoration:none;
   box-shadow:0 0 10px rgba(100,70,220,0.15);
   font-weight:800;color:var(--ink);transition:border-color .15s,box-shadow .15s,transform .12s;
+  min-height:44px;display:inline-flex;align-items:center;
 }
 .nav a:hover{
   border-color:var(--blue);transform:translateY(-2px);
@@ -89,7 +90,7 @@ body::before{
   font-weight:900;color:var(--ink);transition:transform .12s,box-shadow .12s,border-color .12s;
   cursor:pointer;font-family:inherit;font-size:inherit;
 }
-.button:hover{transform:translateY(-2px)}
+.button:hover{transform:translateY(-2px) scale(1.03)}
 .button.primary{
   background:rgba(255,204,68,0.12);border-color:var(--gold);color:var(--gold);
   box-shadow:0 0 14px rgba(255,204,68,0.2);
@@ -187,33 +188,38 @@ h2{
 }
 
 /* PORTAL GRID */
-.portal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.portal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .portal-card{
-  min-height:220px;border:1.5px solid var(--border);border-radius:28px;
-  background:var(--card);padding:24px;text-decoration:none;
+  min-height:200px;border:1.5px solid var(--border);border-radius:28px;
+  background:var(--card);padding:20px;text-decoration:none;
   box-shadow:var(--shadow);position:relative;overflow:hidden;
   transition:transform .15s,border-color .15s,box-shadow .15s;
   display:flex;flex-direction:column;
 }
 .portal-card::before{
   content:"";position:absolute;inset:0;opacity:0;
-  transition:opacity .2s;
+  transition:opacity .22s;pointer-events:none;
 }
-.portal-card:hover{transform:translateY(-4px)}
-.portal-card h3{font-size:28px;line-height:1;margin:12px 0 10px;color:var(--ink)}
-.portal-card p{font-weight:600;color:var(--ink-dim);line-height:1.45;flex:1}
-.portal-icon{font-size:40px}
+.portal-blue::before{background:radial-gradient(circle at 20% 20%,rgba(51,170,255,0.14),transparent 65%)}
+.portal-gold::before{background:radial-gradient(circle at 20% 20%,rgba(255,204,68,0.14),transparent 65%)}
+.portal-moss::before{background:radial-gradient(circle at 20% 20%,rgba(68,221,136,0.14),transparent 65%)}
+.portal-purple::before{background:radial-gradient(circle at 20% 20%,rgba(187,102,255,0.14),transparent 65%)}
+.portal-card:hover{transform:translateY(-6px)}
+.portal-card:hover::before{opacity:1}
+.portal-card h3{font-size:20px;line-height:1.1;margin:10px 0 8px;color:var(--ink)}
+.portal-card p{font-weight:600;color:var(--ink-dim);line-height:1.45;flex:1;font-size:14px}
+.portal-icon{font-size:44px}
 .portal-blue{border-color:rgba(51,170,255,0.3)}
-.portal-blue:hover{border-color:var(--blue);box-shadow:var(--shadow),0 0 30px rgba(51,170,255,0.2)}
+.portal-blue:hover{border-color:var(--blue);box-shadow:var(--shadow),0 0 32px rgba(51,170,255,0.25)}
 .portal-gold{border-color:rgba(255,204,68,0.3)}
-.portal-gold:hover{border-color:var(--gold);box-shadow:var(--shadow),0 0 30px rgba(255,204,68,0.2)}
+.portal-gold:hover{border-color:var(--gold);box-shadow:var(--shadow),0 0 32px rgba(255,204,68,0.25)}
 .portal-moss{border-color:rgba(68,221,136,0.3)}
-.portal-moss:hover{border-color:var(--moss);box-shadow:var(--shadow),0 0 30px rgba(68,221,136,0.2)}
+.portal-moss:hover{border-color:var(--moss);box-shadow:var(--shadow),0 0 32px rgba(68,221,136,0.25)}
 .portal-purple{border-color:rgba(187,102,255,0.3)}
-.portal-purple:hover{border-color:var(--purple);box-shadow:var(--shadow),0 0 30px rgba(187,102,255,0.2)}
+.portal-purple:hover{border-color:var(--purple);box-shadow:var(--shadow),0 0 32px rgba(187,102,255,0.25)}
 
 /* GAME GRID */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;grid-auto-flow:row dense}
 .game-card{
   border:1.5px solid var(--border);border-radius:var(--radius);
   background:var(--card);overflow:hidden;
@@ -222,9 +228,9 @@ h2{
   transition:transform .14s,box-shadow .14s,border-color .14s;
 }
 .game-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 40px rgba(0,0,0,0.8),var(--glow-blue);
-  border-color:rgba(51,170,255,0.4);
+  transform:translateY(-6px);
+  box-shadow:0 16px 48px rgba(0,0,0,0.85),var(--glow-blue);
+  border-color:rgba(51,170,255,0.5);
 }
 .game-card.featured{grid-column:span 2}
 .game-card .image{
@@ -281,8 +287,10 @@ h2{
   .game-card.featured{grid-column:span 1}
   .topbar{align-items:flex-start;flex-direction:column}
   .status-strip{grid-template-columns:1fr 1fr}
+  .portal-card h3{font-size:18px}
 }
 @media(max-width:560px){
   .grid,.portal-grid,.status-strip{grid-template-columns:1fr}
   .hero{border-radius:22px}
+  .portal-card h3{font-size:20px}
 }
