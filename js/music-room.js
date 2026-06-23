@@ -17,6 +17,10 @@ buttons.forEach((button) => {
 
   if (!audio) return;
 
+  audio.addEventListener('loadedmetadata', () => {
+    if (status) status.textContent = 'Ready to play Nara’s MP3.';
+  });
+
   audio.addEventListener('play', () => {
     pauseOtherSongs(audio);
     button.textContent = '⏸ Pause';
@@ -36,7 +40,7 @@ buttons.forEach((button) => {
   audio.addEventListener('error', () => {
     resetButton(button);
     if (status) {
-      status.textContent = 'MP3 missing: add the real file to assets/audio with the exact filename.';
+      status.textContent = `Could not load ${audio.getAttribute('src')}. Check the committed MP3 file name.`;
     }
   });
 
@@ -51,7 +55,7 @@ buttons.forEach((button) => {
     } catch (error) {
       resetButton(button);
       if (status) {
-        status.textContent = 'Could not play this MP3. Check the file exists and is the real song.';
+        status.textContent = `Could not play ${audio.getAttribute('src')}. Browser may still be loading it.`;
       }
     }
   });
