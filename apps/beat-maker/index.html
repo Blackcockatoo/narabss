@@ -4,8 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Beat Maker Lab — Nara's Colour Quest</title>
-  <meta name="description" content="A kid-safe Baby B$S beat maker with pads, step sequencer and funny creature sounds.">
+  <meta name="description" content="A kid-safe Baby B$S beat maker with pads, step sequencer and a custom sound manipulator.">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .custom-lab .section-title p{max-width:58ch}
+    .custom-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+    .custom-grid label{
+      font-weight:950;display:grid;gap:8px;border:2px solid var(--ink);
+      border-radius:20px;background:#fff;padding:12px;color:var(--ink);
+    }
+    .custom-grid select{
+      width:100%;border:2px solid var(--ink);border-radius:14px;padding:10px;
+      font-weight:900;background:#fff;color:var(--ink);font-family:inherit;
+    }
+    .custom-switch{display:flex!important;align-items:center;justify-content:space-between;gap:12px}
+    .custom-switch input{width:28px;height:28px;accent-color:var(--purple)}
+    .custom-status{font-weight:900;color:var(--moss);align-self:center}
+    .custom-note{font-weight:750;color:var(--ink-dim);margin:10px 0 0;line-height:1.4}
+    @media(max-width:850px){.custom-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.custom-grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
   <main class="lab-shell">
@@ -13,6 +31,7 @@
       <a class="brand" href="../../index.html"><span class="mark">$</span><span>Beat Maker Lab<br><small>Nara's Colour Quest</small></span></a>
       <nav class="nav">
         <a href="../../index.html">Home</a>
+        <a href="../../colouring-pages.html">Print Pages</a>
         <a href="../../games/rex-rhythm/index.html">Rex Rhythm</a>
         <a href="../../games/dino-dash/index.html">Dino Dash</a>
       </nav>
@@ -22,7 +41,7 @@
       <div>
         <p class="kicker">Tiny loops • no saving • just play</p>
         <h1>Make the creature beat.</h1>
-        <p>Tap pads, paint steps, twist pitch, echo, fuzz and space. Press play and let Gameasaurus test the cave speakers.</p>
+        <p>Tap pads, paint steps, twist pitch, echo, fuzz and space. Then build a custom sound, reverse it if you want, and add it as its own beat row.</p>
         <div class="transport">
           <button id="playBtn" class="big primary">▶ Play</button>
           <button id="stopBtn" class="big">■ Stop</button>
@@ -47,13 +66,43 @@
       <label>Swing <output id="swingOut">8</output><input id="swing" type="range" min="0" max="40" value="8"></label>
     </section>
 
+    <section class="panel custom-lab">
+      <div class="section-title">
+        <h2>Custom Sound Manipulator</h2>
+        <p>Choose one built-in sound, bend it, preview it, then add it as a custom beat row in the sequencer.</p>
+      </div>
+      <div class="custom-grid">
+        <label>Source Sound
+          <select id="customBase">
+            <option value="kick">🦖 Dino Kick</option>
+            <option value="snap">🐍 Snake Snap</option>
+            <option value="meow">🐱 Cat Meow</option>
+            <option value="whistle">🪶 Feather Whistle</option>
+            <option value="cool">😎 Cool Pad</option>
+          </select>
+        </label>
+        <label>Custom Pitch <output id="customPitchOut">0</output><input id="customPitch" type="range" min="-24" max="24" value="0"></label>
+        <label>Speed <output id="customSpeedOut">100</output><input id="customSpeed" type="range" min="45" max="220" value="100"></label>
+        <label>Echo <output id="customEchoOut">35</output><input id="customEcho" type="range" min="0" max="95" value="35"></label>
+        <label>Distort <output id="customFuzzOut">18</output><input id="customFuzz" type="range" min="0" max="100" value="18"></label>
+        <label>Reverb <output id="customSpaceOut">30</output><input id="customSpace" type="range" min="0" max="95" value="30"></label>
+        <label class="custom-switch">Reverse swoop <input id="customReverse" type="checkbox"></label>
+      </div>
+      <div class="transport" style="margin-top:16px">
+        <button id="previewCustomBtn" class="big blue" type="button">▶ Preview Custom</button>
+        <button id="addCustomBtn" class="big primary" type="button">＋ Add / Update Custom Row</button>
+        <span id="customStatus" class="custom-status">No custom row yet.</span>
+      </div>
+      <p class="custom-note">This does not save or upload anything. It just creates one live custom row until refresh.</p>
+    </section>
+
     <section class="panel">
       <div class="section-title"><h2>Sound Pads</h2><p>Tap one any time. Paint the grid below to sequence.</p></div>
       <div id="pads" class="pads" aria-label="Sound pads"></div>
     </section>
 
     <section class="panel sequence-panel">
-      <div class="section-title"><h2>8-Step Creature Loop</h2><p>Click dots to turn sounds on/off.</p></div>
+      <div class="section-title"><h2>8-Step Creature Loop</h2><p>Click dots to turn sounds on/off. Add a custom row above when you like your sound.</p></div>
       <div class="step-head" id="stepHead"></div>
       <div id="sequencer" class="sequencer" aria-label="Step sequencer"></div>
     </section>
