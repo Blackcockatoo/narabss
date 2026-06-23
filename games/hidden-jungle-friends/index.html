@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hidden Jungle Friends — Nara's Colour Quest</title>
+  <style>
+    :root{--paper:#080612;--card:#13102a;--card-2:#1a1538;--ink:#e8d4b8;--ink-dim:#7a6a8a;
+      --border:rgba(100,70,220,0.28);--blue:#33aaff;--gold:#ffcc44;--purple:#bb66ff;--moss:#44dd88;--orange:#ff8844}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100vh;background:var(--paper);color:var(--ink);font-family:system-ui,sans-serif}
+    .shell{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:0 0 18px}
+    .brand{text-decoration:none;font-weight:900;color:var(--blue);font-size:13px}
+    .kicker{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--moss);text-transform:uppercase;margin-bottom:6px}
+    h1{font-size:clamp(30px,6vw,58px);letter-spacing:-.06em;line-height:.9;margin-bottom:14px}
+    .checklist{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+    .check-item{padding:6px 14px;border-radius:999px;border:1.5px solid var(--border);
+      background:var(--card-2);font-size:13px;font-weight:800;color:var(--ink-dim);transition:all .3s}
+    .check-item.found{border-color:var(--moss);color:var(--moss);
+      background:rgba(68,221,136,.08);box-shadow:0 0 10px rgba(68,221,136,.2)}
+    .scene{position:relative;border:1.5px solid var(--border);border-radius:18px;
+      background:linear-gradient(135deg,#0d1a0d,#0a1220,#130a20);
+      overflow:hidden;min-height:460px;cursor:crosshair;
+      box-shadow:0 0 40px rgba(0,0,0,.9);user-select:none}
+    .hidden-item{position:absolute;font-size:28px;cursor:pointer;
+      transition:transform .2s,filter .2s;filter:brightness(.6) saturate(.5);z-index:2}
+    .hidden-item:hover{filter:brightness(.8) saturate(.7) drop-shadow(0 0 6px rgba(255,255,255,.3))}
+    .hidden-item.found{filter:brightness(1) saturate(1) drop-shadow(0 0 12px gold);
+      animation:foundPop .5s ease;pointer-events:none;z-index:3}
+    @keyframes foundPop{0%{transform:scale(1)}40%{transform:scale(1.6)}100%{transform:scale(1)}}
+    .deco{position:absolute;font-size:20px;opacity:.3;pointer-events:none}
+    .progress{font-size:14px;font-weight:800;color:var(--ink-dim);margin-bottom:10px}
+    .progress b{color:var(--gold)}
+    .win{display:none;text-align:center;padding:28px;border:1.5px solid var(--gold);
+      border-radius:18px;background:rgba(255,204,68,.06);margin-top:20px;animation:popIn .4s ease}
+    .win.show{display:block}
+    @keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+    .btn{padding:12px 28px;border-radius:999px;border:1.5px solid var(--moss);
+      background:rgba(68,221,136,.08);color:var(--moss);font-weight:900;cursor:pointer;
+      font-size:14px;font-family:inherit;transition:box-shadow .15s;margin-top:12px}
+    .btn:hover{box-shadow:0 0 18px rgba(68,221,136,.4)}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">← Home</a>
+    </header>
+    <p class="kicker">Baby B$S · Hidden Object</p>
+    <h1>Hidden Jungle Friends</h1>
+    <p class="progress">Found <b id="foundCount">0</b> / 8 creatures</p>
+    <div class="checklist" id="checklist"></div>
+    <div class="scene" id="scene"></div>
+    <div class="win" id="win">
+      <div style="font-size:56px">🎉</div>
+      <h2 style="color:var(--gold);font-size:40px;letter-spacing:-.05em;margin:8px 0">You found them all!</h2>
+      <p style="color:var(--ink-dim);font-weight:700">All 8 jungle friends discovered!</p>
+      <button class="btn" onclick="init()">Play Again</button>
+    </div>
+  </div>
+  <script>
+    const ITEMS = [
+      {emoji:'🪶',name:'Golden Feather',x:12,y:15},
+      {emoji:'⭐',name:'Falling Star',x:75,y:8},
+      {emoji:'🦖',name:'Dino Egg',x:30,y:55},
+      {emoji:'🐍',name:'Blue Snake',x:60,y:40},
+      {emoji:'🦋',name:'Blue Butterfly',x:85,y:65},
+      {emoji:'🌸',name:'Night Blossom',x:18,y:70},
+      {emoji:'🦜',name:'Lantern Bird',x:50,y:20},
+      {emoji:'🌙',name:'Moon Shard',x:88,y:25},
+    ];
+    const DECO = [
+      {e:'🌿',x:5,y:5},{e:'🌿',x:40,y:80},{e:'🌿',x:70,y:90},{e:'🌿',x:90,y:10},
+      {e:'🍃',x:25,y:30},{e:'🍃',x:65,y:50},{e:'🍃',x:45,y:65},{e:'🍃',x:80,y:35},
+      {e:'🌱',x:10,y:85},{e:'🌱',x:55,y:10},{e:'🎋',x:35,y:45},{e:'🎋',x:75,y:70},
+    ];
+    let found = new Set();
+
+    function init() {
+      found.clear();
+      document.getElementById('foundCount').textContent=0;
+      document.getElementById('win').classList.remove('show');
+      buildScene();
+      buildChecklist();
+    }
+
+    function buildChecklist() {
+      document.getElementById('checklist').innerHTML = ITEMS.map((item,i)=>
+        `<span class="check-item" id="ci${i}">${item.emoji} ${item.name}</span>`
+      ).join('');
+    }
+
+    function buildScene() {
+      const scene = document.getElementById('scene');
+      const rng = (seed,max) => ((seed*2654435761)>>>0)%max;
+      // Place deco
+      scene.innerHTML = DECO.map(d=>
+        `<span class="deco" style="left:${d.x}%;top:${d.y}%">${d.e}</span>`
+      ).join('');
+      // Place hidden items (slightly randomised within their area)
+      ITEMS.forEach((item,i)=>{
+        const jx = item.x + (rng(i*3,8)-4);
+        const jy = item.y + (rng(i*7,8)-4);
+        const el = document.createElement('span');
+        el.className='hidden-item';
+        el.id='hi'+i;
+        el.style.left=Math.max(2,Math.min(93,jx))+'%';
+        el.style.top=Math.max(2,Math.min(88,jy))+'%';
+        el.textContent=item.emoji;
+        el.addEventListener('click',()=>findItem(i));
+        scene.appendChild(el);
+      });
+    }
+
+    function findItem(i) {
+      if (found.has(i)) return;
+      found.add(i);
+      document.getElementById('hi'+i).classList.add('found');
+      document.getElementById('ci'+i).classList.add('found');
+      document.getElementById('foundCount').textContent=found.size;
+      if (found.size === ITEMS.length) setTimeout(()=>document.getElementById('win').classList.add('show'),600);
+    }
+
+    init();
+  </script>
+</body>
+</html>

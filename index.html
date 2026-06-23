@@ -4,68 +4,86 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nara's Colour Quest — Baby B$S Arcade</title>
-  <meta name="description" content="A Blue Snake Studios Junior colouring-book arcade with eight games, a beat maker, creature cards and printable kid-safe energy.">
+  <meta name="description" content="A Blue Snake Studios Junior colouring-book arcade. Dark, beautiful, kid-safe.">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero-creature{
+      font-size:clamp(80px,14vw,160px);line-height:1;text-align:center;
+      filter:drop-shadow(0 0 30px rgba(51,170,255,0.5));
+      animation:float 3s ease-in-out infinite;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      height:100%;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .glow-title{text-shadow:0 0 60px rgba(187,102,255,0.25),0 0 120px rgba(51,170,255,0.1)}
+  </style>
 </head>
 <body>
   <main class="site-shell">
     <header class="topbar">
       <a class="brand" href="index.html" aria-label="Nara's Colour Quest home">
-        <span class="brand-mark">$</span>
+        <span class="brand-mark">B$S</span>
         <span>Nara's Colour Quest<br><small>Blue Snake Studios Junior</small></span>
       </a>
       <nav class="nav" aria-label="Main navigation">
         <a href="#playdeck">Playdeck</a>
+        <a href="apps/mandala/index.html">✦ Mandala</a>
         <a href="apps/beat-maker/index.html">Beat Maker</a>
         <a href="games/dino-dash/index.html">Dino Dash</a>
-        <a href="games/creature-match/index.html">Start</a>
       </nav>
     </header>
 
     <section class="hero mega-hero">
       <div class="hero-copy">
-        <p class="kicker">Baby B$S Arcade • Colouring Book OS</p>
-        <h1>Press start, little legend.</h1>
-        <p class="sub">A soft-mythic kid-safe game cave wrapped around colouring pages, creature cards, Dino Dash, hidden jungle objects and a tiny beat maker lab.</p>
+        <p class="kicker">Baby B$S Arcade · Colouring Book OS · Dark &amp; Beautiful</p>
+        <h1 class="glow-title">Press start,<br>little legend.</h1>
+        <p class="sub">A soft-mythic kid-safe game cave wrapped in dark ink and neon light. Creature cards, colour labs, dino runs, and a magic mandala drawer.</p>
         <div class="button-row">
           <a class="button primary" href="games/creature-match/index.html">Play First Game</a>
-          <a class="button blue" href="apps/beat-maker/index.html">Open Beat Maker</a>
-          <a class="button orange" href="games/dino-dash/index.html">Enter Dino Cave</a>
+          <a class="button purple" href="apps/mandala/index.html">✦ Draw Mandala</a>
+          <a class="button blue" href="apps/beat-maker/index.html">Beat Maker</a>
+          <a class="button orange" href="games/dino-dash/index.html">Dino Cave</a>
         </div>
       </div>
-      <figure class="hero-card" aria-label="Hero image">
-        <img src="assets/images/hero-boy-feather.svg" alt="Colouring-book hero character with feather">
+      <figure class="hero-card" aria-label="Hero creature">
+        <div class="hero-creature" role="img" aria-label="Blue snake mascot">🐍<br><small style="font-size:.4em;opacity:.7">✦ B$S ✦</small></div>
       </figure>
       <aside class="status-strip" aria-label="Build status">
-        <span><b>8</b> playable games</span>
-        <span><b>1</b> beat maker app</span>
-        <span><b>0</b> logins or comments</span>
-        <span><b>Baby B$S</b> safe wrapper</span>
+        <span><b>8</b>playable games</span>
+        <span><b>1</b>beat maker lab</span>
+        <span><b>1</b>mandala drawer</span>
+        <span><b>0</b>logins or comments</span>
       </aside>
     </section>
 
     <section class="section portal-wrap" aria-label="Colour Quest portals">
       <div class="section-title">
         <h2>Quest Portals</h2>
-        <span class="badge">soft, weird, safe</span>
+        <span class="badge">soft · weird · safe</span>
       </div>
       <div class="portal-grid">
+        <a class="portal-card portal-purple" href="apps/mandala/index.html">
+          <span class="portal-icon">✦</span>
+          <h3>ASMR Mandala</h3>
+          <p>Draw glowing snowflakes with 2–9 slice symmetry and gentle sounds.</p>
+          <span class="tag">New</span><span class="tag">Draw</span>
+        </a>
         <a class="portal-card portal-blue" href="apps/beat-maker/index.html">
           <span class="portal-icon">🎛️</span>
           <h3>Beat Maker Lab</h3>
-          <p>Build tiny loops with Dino Kick, Snake Snap, Cat Meow, Feather Whistle and a cheeky Cool pad.</p>
-          <span class="tag">Music app</span>
+          <p>Build tiny loops with Dino Kick, Snake Snap, Cat Meow and a cheeky Cool pad.</p>
+          <span class="tag">Music</span>
         </a>
         <a class="portal-card portal-gold" href="games/dino-dash/index.html">
           <span class="portal-icon">🦖</span>
           <h3>Dino Game Cave</h3>
-          <p>Run, jump, duck, grab colour drops and power the Roar Meter.</p>
-          <span class="tag">Main hook</span>
+          <p>Run, jump, grab colour drops and power the Roar Meter.</p>
+          <span class="tag">Runner</span>
         </a>
         <a class="portal-card portal-moss" href="games/colour-lab/index.html">
           <span class="portal-icon">🎨</span>
           <h3>Colour Lab</h3>
-          <p>Tap shapes, fill colours, download your little creature page.</p>
+          <p>Tap sections, fill colours, download your creature page.</p>
           <span class="tag">Creative</span>
         </a>
       </div>
@@ -74,29 +92,61 @@
     <section class="section" id="playdeck">
       <div class="section-title">
         <h2>The Playdeck</h2>
-        <span class="badge">9 playable things</span>
+        <span class="badge">10 playable things</span>
       </div>
       <div class="grid">
-        <a class="game-card featured" href="apps/beat-maker/index.html">
-          <div class="image beat-illustration"><span>♪</span><span>●</span><span>▲</span><span>◆</span></div>
-          <div class="body"><h3>Beat Maker Lab</h3><p>Tap pads, sequence beats, twist pitch, echo, fuzz and space. No saving, just play.</p><span class="tag">Playable now</span><span class="tag">Music</span></div>
+        <a class="game-card featured" href="apps/mandala/index.html">
+          <div class="image mandala-illustration">✦</div>
+          <div class="body">
+            <h3>ASMR Mandala Drawer</h3>
+            <p>Draw glowing fractal snowflakes with 2–9 way symmetry. Gentle sounds as you draw. Download your art.</p>
+            <span class="tag">New</span><span class="tag">Draw</span><span class="tag">Snowflake</span>
+          </div>
         </a>
-        <a class="game-card" href="games/creature-match/index.html"><div class="image"><img src="assets/images/lantern-bird.svg" alt="Lantern bird creature"></div><div class="body"><h3>Creature Match</h3><p>Flip cards, match creature pairs, unlock the colouring magic.</p><span class="tag">Playable now</span><span class="tag">Memory</span></div></a>
-        <a class="game-card" href="games/dino-dash/index.html"><div class="image"><img src="assets/images/nara-seal.svg" alt="Blue Snake Studios Junior seal"></div><div class="body"><h3>Dino Dash</h3><p>Gameasaurus Rex runs, jumps, and grabs colour drops in the Dino Game Cave.</p><span class="tag">Playable now</span><span class="tag">Runner</span></div></a>
-        <a class="game-card" href="games/hidden-jungle-friends/index.html"><div class="image"><img src="assets/images/jungle-creatures.svg" alt="Jungle creatures colouring page"></div><div class="body"><h3>Hidden Jungle Friends</h3><p>Find feathers, stars, a dino egg and secret blue snake marks.</p><span class="tag">Playable now</span><span class="tag">Hidden object</span></div></a>
-        <a class="game-card" href="games/catchemall-cat/index.html"><div class="image"><img src="assets/images/catchemall-cat.svg" alt="Cat colouring page"></div><div class="body"><h3>Catchemall Cat</h3><p>Move the couch cat and catch hearts, yarn balls and tiny stars.</p><span class="tag">Playable now</span><span class="tag">Catch</span></div></a>
-        <a class="game-card" href="games/snake-trail/index.html"><div class="image"><img src="assets/images/narayane-seal.svg" alt="Narayané seal"></div><div class="body"><h3>Snake Trail</h3><p>Little Blue Snake draws a glowing trail through the colouring world.</p><span class="tag">Playable now</span><span class="tag">Snake</span></div></a>
-        <a class="game-card" href="games/feather-catcher/index.html"><div class="image"><img src="assets/images/hero-boy-feather.svg" alt="Feather boy art"></div><div class="body"><h3>Feather Catcher</h3><p>Catch golden feathers in calm mode. No losing, just collecting.</p><span class="tag">Playable now</span><span class="tag">Calm</span></div></a>
-        <a class="game-card" href="games/colour-lab/index.html"><div class="image"><img src="assets/images/flower-phoenix.svg" alt="Flower phoenix colouring page"></div><div class="body"><h3>Colour Lab</h3><p>Pick colours, fill sections, save your creature page.</p><span class="tag">Playable now</span><span class="tag">Colouring</span></div></a>
-        <a class="game-card" href="games/rex-rhythm/index.html"><div class="image"><img src="assets/images/dad-and-son-forest.svg" alt="Dad and son forest colouring page"></div><div class="body"><h3>Rex Rhythm</h3><p>Tap buttons to the music and fill the Roar Meter.</p><span class="tag">Playable now</span><span class="tag">Rhythm</span></div></a>
+        <a class="game-card" href="apps/beat-maker/index.html">
+          <div class="image beat-illustration"><span>♪</span><span>●</span><span>▲</span></div>
+          <div class="body"><h3>Beat Maker Lab</h3><p>Tap pads, sequence beats, twist pitch, echo, fuzz and space.</p><span class="tag">Music</span></div>
+        </a>
+        <a class="game-card" href="games/creature-match/index.html">
+          <div class="image" style="font-size:64px;display:grid;place-items:center;background:rgba(51,170,255,0.05)">🦖</div>
+          <div class="body"><h3>Creature Match</h3><p>Flip cards, match creature pairs, unlock the colouring magic.</p><span class="tag">Memory</span></div>
+        </a>
+        <a class="game-card" href="games/dino-dash/index.html">
+          <div class="image" style="font-size:64px;display:grid;place-items:center;background:rgba(255,204,68,0.05)">🦖</div>
+          <div class="body"><h3>Dino Dash</h3><p>Run, jump, grab colour drops and power the Roar Meter.</p><span class="tag">Runner</span></div>
+        </a>
+        <a class="game-card" href="games/hidden-jungle-friends/index.html">
+          <div class="image" style="font-size:64px;display:grid;place-items:center;background:rgba(68,221,136,0.05)">🌿</div>
+          <div class="body"><h3>Hidden Jungle Friends</h3><p>Find feathers, stars, dino eggs and secret blue snake marks.</p><span class="tag">Hidden object</span></div>
+        </a>
+        <a class="game-card" href="games/catchemall-cat/index.html">
+          <div class="image" style="font-size:64px;display:grid;place-items:center;background:rgba(255,136,68,0.05)">🐱</div>
+          <div class="body"><h3>Catchemall Cat</h3><p>Move the couch cat and catch hearts, yarn and tiny stars.</p><span class="tag">Catch</span></div>
+        </a>
+        <a class="game-card" href="games/snake-trail/index.html">
+          <div class="image" style="font-size:64px;display:grid;place-items:center;background:rgba(51,170,255,0.05)">🐍</div>
+          <div class="body"><h3>Snake Trail</h3><p>Little Blue Snake draws a glowing trail through the colouring world.</p><span class="tag">Snake</span></div>
+        </a>
+        <a class="game-card" href="games/feather-catcher/index.html">
+          <div class="image" style="font-size:64px;display:grid;place-items:center;background:rgba(187,102,255,0.05)">🪶</div>
+          <div class="body"><h3>Feather Catcher</h3><p>Catch golden feathers in calm mode. No losing, just collecting.</p><span class="tag">Calm</span></div>
+        </a>
+        <a class="game-card" href="games/colour-lab/index.html">
+          <div class="image" style="font-size:64px;display:grid;place-items:center;background:rgba(68,221,136,0.05)">🎨</div>
+          <div class="body"><h3>Colour Lab</h3><p>Pick colours, fill sections, save your creature page.</p><span class="tag">Colouring</span></div>
+        </a>
+        <a class="game-card" href="games/rex-rhythm/index.html">
+          <div class="image" style="font-size:64px;display:grid;place-items:center;background:rgba(255,204,68,0.05)">🥁</div>
+          <div class="body"><h3>Rex Rhythm</h3><p>Tap buttons to the music and fill the Roar Meter.</p><span class="tag">Rhythm</span></div>
+        </a>
       </div>
     </section>
 
     <section class="section safety-panel">
       <h2>Baby B$S Rules</h2>
-      <p>Printable, playable, round, bright, strange, safe. No login. No comments. No school details. Dad-controlled uploads only.</p>
+      <p>Printable · playable · round · bright · strange · safe. No login. No comments. No school details. Dad-controlled. Kid-powered.</p>
     </section>
-    <p class="footer-note">Nara's Colour Quest • Blue Snake Studios Junior • Dad-built, kid-powered.</p>
+    <p class="footer-note">Nara's Colour Quest · Blue Snake Studios Junior · Dad-built, kid-powered.</p>
   </main>
 </body>
 </html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rex Rhythm — Nara's Colour Quest</title>
+  <style>
+    :root{--paper:#080612;--card:#13102a;--card-2:#1a1538;--ink:#e8d4b8;--ink-dim:#7a6a8a;
+      --border:rgba(100,70,220,0.28);--blue:#33aaff;--gold:#ffcc44;--purple:#bb66ff;--moss:#44dd88;--orange:#ff8844}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100vh;background:var(--paper);color:var(--ink);font-family:system-ui,sans-serif}
+    .shell{max-width:700px;margin:0 auto;padding:20px 16px 48px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:0 0 18px}
+    .brand{text-decoration:none;font-weight:900;color:var(--blue);font-size:13px}
+    .kicker{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+    h1{font-size:clamp(30px,6vw,56px);letter-spacing:-.06em;line-height:.9;margin-bottom:14px}
+    .roar-meter{margin:14px 0;padding:14px;border:1.5px solid var(--border);border-radius:14px;background:var(--card)}
+    .roar-label{font-size:11px;font-weight:900;letter-spacing:.12em;color:var(--ink-dim);text-transform:uppercase;margin-bottom:8px}
+    .roar-bar{height:18px;background:rgba(255,255,255,.05);border-radius:999px;overflow:hidden}
+    .roar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));
+      border-radius:999px;transition:width .3s;box-shadow:0 0 12px rgba(187,102,255,.4)}
+    .stage{border:1.5px solid var(--border);border-radius:18px;background:var(--card);
+      padding:28px;text-align:center;min-height:300px;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:20px;box-shadow:0 0 40px rgba(0,0,0,.8)}
+    .dino{font-size:72px;transition:transform .1s;line-height:1;
+      filter:drop-shadow(0 0 20px rgba(255,204,68,.3))}
+    .dino.jump{animation:dinoJump .3s ease}
+    @keyframes dinoJump{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+    .pads{display:flex;gap:14px;margin-top:8px}
+    .pad{width:80px;height:80px;border-radius:18px;border:2px solid rgba(255,255,255,.1);
+      cursor:pointer;font-size:28px;display:grid;place-items:center;
+      transition:transform .1s,filter .1s,border-color .1s;
+      user-select:none;-webkit-tap-highlight-color:transparent}
+    .pad:active,.pad.lit,.pad.pressed{transform:scale(.92);filter:brightness(1.8)}
+    .pad.lit{box-shadow:0 0 30px currentColor;border-color:currentColor !important}
+    .pad.wrong{animation:wrongShake .3s ease}
+    @keyframes wrongShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+    #status{font-size:15px;font-weight:800;color:var(--ink-dim);min-height:24px}
+    #level{font-size:13px;font-weight:900;color:var(--gold)}
+    .btn{padding:12px 32px;border-radius:999px;border:1.5px solid var(--gold);
+      background:rgba(255,204,68,.1);color:var(--gold);font-weight:900;cursor:pointer;
+      font-size:15px;font-family:inherit;transition:box-shadow .15s}
+    .btn:hover{box-shadow:0 0 22px rgba(255,204,68,.5)}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">← Home</a>
+    </header>
+    <p class="kicker">Baby B$S · Rhythm Game</p>
+    <h1>Rex Rhythm</h1>
+    <div class="roar-meter">
+      <div class="roar-label">🔥 Roar Meter</div>
+      <div class="roar-bar"><div class="roar-fill" id="roarFill"></div></div>
+    </div>
+    <div class="stage">
+      <div class="dino" id="dino">🦖</div>
+      <div id="status">Press Start to play!</div>
+      <div id="level"></div>
+      <div class="pads" id="pads">
+        <div class="pad" id="p0" style="background:rgba(51,170,255,.15);border-color:rgba(51,170,255,.3);color:#33aaff">🦖</div>
+        <div class="pad" id="p1" style="background:rgba(255,204,68,.15);border-color:rgba(255,204,68,.3);color:#ffcc44">⭐</div>
+        <div class="pad" id="p2" style="background:rgba(187,102,255,.15);border-color:rgba(187,102,255,.3);color:#bb66ff">🐍</div>
+        <div class="pad" id="p3" style="background:rgba(68,221,136,.15);border-color:rgba(68,221,136,.3);color:#44dd88">🌸</div>
+      </div>
+      <button class="btn" id="startBtn" onclick="startGame()">▶ Start</button>
+    </div>
+  </div>
+  <script>
+    const PAD_COLORS=['#33aaff','#ffcc44','#bb66ff','#44dd88'];
+    let sequence=[], playerSeq=[], level=0, roar=0, playing=false, showing=false;
+    let audioCtx=null;
+    const FREQS=[261.6,329.6,392,523.3];
+
+    function getAudio(){ if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+
+    function playTone(i) {
+      const a=getAudio();
+      const osc=a.createOscillator(), g=a.createGain();
+      osc.type='triangle'; osc.frequency.value=FREQS[i];
+      g.gain.setValueAtTime(0,a.currentTime);
+      g.gain.linearRampToValueAtTime(0.3,a.currentTime+0.02);
+      g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+0.4);
+      osc.connect(g); g.connect(a.destination);
+      osc.start(a.currentTime); osc.stop(a.currentTime+0.5);
+    }
+
+    function litPad(i, on) {
+      const p=document.getElementById('p'+i);
+      if(on) p.classList.add('lit'); else p.classList.remove('lit');
+    }
+
+    async function showSequence() {
+      showing=true;
+      document.getElementById('status').textContent='Watch the pattern...';
+      await delay(600);
+      for(let n of sequence) {
+        litPad(n,true); playTone(n);
+        await delay(500);
+        litPad(n,false);
+        await delay(200);
+      }
+      showing=false;
+      playerSeq=[];
+      document.getElementById('status').textContent='Your turn! Repeat the pattern.';
+    }
+
+    function delay(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+    function startGame() {
+      document.getElementById('startBtn').style.display='none';
+      sequence=[]; level=0; roar=0;
+      document.getElementById('roarFill').style.width='0%';
+      addStep();
+    }
+
+    function addStep() {
+      sequence.push(Math.floor(Math.random()*4));
+      level++;
+      document.getElementById('level').textContent=`Level ${level}`;
+      showSequence();
+    }
+
+    async function wrongAnim() {
+      document.getElementById('status').textContent='❌ Oops! Try that level again.';
+      document.getElementById('dino').style.filter='drop-shadow(0 0 20px rgba(255,68,68,.6))';
+      await delay(100);
+      document.getElementById('dino').style.filter='';
+    }
+
+    // Pad clicks
+    for(let i=0;i<4;i++) {
+      document.getElementById('p'+i).addEventListener('click', async()=>{
+        if(showing||!sequence.length) return;
+        litPad(i,true); playTone(i);
+        await delay(150); litPad(i,false);
+        playerSeq.push(i);
+        const pos=playerSeq.length-1;
+        if(playerSeq[pos]!==sequence[pos]) {
+          // Wrong
+          await wrongAnim();
+          await delay(800);
+          playerSeq=[]; sequence.pop();
+          if(sequence.length) showSequence(); else startGame();
+          return;
+        }
+        if(playerSeq.length===sequence.length) {
+          // Correct!
+          roar=Math.min(100, roar+10+level);
+          document.getElementById('roarFill').style.width=roar+'%';
+          const dino=document.getElementById('dino');
+          dino.classList.add('jump');
+          setTimeout(()=>dino.classList.remove('jump'),300);
+          if(roar>=100) {
+            document.getElementById('status').textContent='🎉 ROAR! You maxed the meter!';
+            await delay(2000); roar=0;
+            document.getElementById('roarFill').style.width='0%';
+          } else {
+            document.getElementById('status').textContent='✓ Great! Next level...';
+          }
+          await delay(700);
+          addStep();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
