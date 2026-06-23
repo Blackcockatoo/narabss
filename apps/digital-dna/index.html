@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Digital DNA Hub — Nara's Colour Quest</title>
-  <meta name="description" content="A Blue Snake Studios Junior Digital DNA visual and sound toy with helix, mandala, particles, sound and journey modes.">
-  <link rel="stylesheet" href="style.css">
+  <title>Digital DNA Hub — Peacock Metallic Upgrade</title>
+  <meta name="description" content="A Blue Snake Studios Junior Digital DNA visual and sound toy with peacock metallic digit logic, conscious particles, helix, mandala and sound modes.">
+  <link rel="stylesheet" href="style.css?v=peacock-v2">
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <header class="topbar">
       <a class="brand" href="../../index.html" aria-label="Nara's Colour Quest home">
         <span class="mark">DNA</span>
-        <span>Digital DNA Hub<br><small>Moss60 playground</small></span>
+        <span>Digital DNA Hub<br><small>Peacock Metallic v2</small></span>
       </a>
       <nav class="nav" aria-label="Main navigation">
         <a href="../../index.html">Home</a>
@@ -23,61 +23,79 @@
       </nav>
     </header>
 
-    <section class="hero">
+    <section class="hero upgrade-hero">
       <div>
-        <p class="kicker">Digital DNA • Sacred sound toy</p>
-        <h1>Touch the number song.</h1>
-        <p class="sub">Red, Black and Blue digit strands become spirals, mandalas, particle fields and playable notes. A browser-safe version of the Digital DNA Hub for Nara's Colour Quest.</p>
+        <p class="kicker">Digital DNA • Visible Peacock Upgrade</p>
+        <h1>Touch the metallic number song.</h1>
+        <p class="sub">Red, Black and Blue are no longer plain dots. Each strand now has its own symbol, pearlescent peacock-metal digit logic, a special 0 pearl gate, and conscious particles that orbit, gather and resist your cursor.</p>
         <div class="button-row">
           <button class="btn primary" id="playDnaBtn" type="button">▶ Play DNA</button>
-          <button class="btn blue" type="button" data-mode="spiral">Open Helix</button>
-          <button class="btn purple" type="button" data-mode="journey">Guided Journey</button>
+          <button class="btn blue" type="button" data-mode="particles">Conscious Particles</button>
+          <button class="btn purple" type="button" data-mode="spiral">Metallic Helix</button>
         </div>
       </div>
-      <div class="orb" aria-hidden="true">🧬<br><span style="font-size:34px">108 • 60 • 7</span></div>
+      <div class="orb upgrade-orb" aria-hidden="true">
+        <div id="seedSymbol" class="seed-symbol">☉ 🔥</div>
+        <strong id="seedName">Ruby Peacock Fire</strong>
+        <span>0 pearl • 1–9 feather metal</span>
+      </div>
+    </section>
+
+    <section class="section panel upgrade-panel">
+      <div>
+        <p class="kicker">Upgrade is active</p>
+        <h2>Peacock Metallic Digit Logic</h2>
+        <p id="seedMantra" class="sub">0 is the pearl gate. 1–9 flare into red-gold peacock metal.</p>
+      </div>
+      <div class="logic-grid" aria-label="Digit logic notes">
+        <article><b>◎</b><strong>Digit 0</strong><span>Pearl gate / reset symbol</span></article>
+        <article><b>☉</b><strong>Red strand</strong><span>Ruby fire peacock metal</span></article>
+        <article><b>◈</b><strong>Black strand</strong><span>Obsidian mirror peacock metal</span></article>
+        <article><b>✺</b><strong>Blue strand</strong><span>Sapphire water peacock metal</span></article>
+      </div>
     </section>
 
     <section class="section panel">
       <div class="mode-grid" aria-label="Digital DNA mode selector">
-        <button class="btn mode-btn" data-mode="spiral" type="button"><b>🌀</b><strong>DNA Helix</strong><span>hover digits</span></button>
-        <button class="btn mode-btn" data-mode="mandala" type="button"><b>🔮</b><strong>Mandala</strong><span>paint pattern</span></button>
-        <button class="btn mode-btn" data-mode="particles" type="button"><b>✨</b><strong>Particles</strong><span>guide field</span></button>
-        <button class="btn mode-btn" data-mode="sound" type="button"><b>🎵</b><strong>Sound Temple</strong><span>tap bars</span></button>
+        <button class="btn mode-btn" data-mode="spiral" type="button"><b>🌀</b><strong>Metallic Helix</strong><span>hover pearl digits</span></button>
+        <button class="btn mode-btn" data-mode="mandala" type="button"><b>🔮</b><strong>Peacock Mandala</strong><span>paint metal marks</span></button>
+        <button class="btn mode-btn" data-mode="particles" type="button"><b>✨</b><strong>Conscious Particles</strong><span>alive field</span></button>
+        <button class="btn mode-btn" data-mode="sound" type="button"><b>🎵</b><strong>Sound Temple</strong><span>tap symbol bars</span></button>
         <button class="btn mode-btn" data-mode="journey" type="button"><b>🧭</b><strong>Journey</strong><span>follow path</span></button>
       </div>
     </section>
 
     <section class="section panel stage" id="canvasPanel">
       <div class="stage-title">
-        <div><h2 id="stageTitle">🌀 DNA Helix Explorer</h2><p id="stageDesc">Move over the glowing digits to hear their tone.</p></div>
+        <div><h2 id="stageTitle">🌀 Metallic DNA Helix</h2><p id="stageDesc">Move over the pearl and feather digits to hear their tone.</p></div>
         <button class="btn purple" id="clearPaintBtn" type="button">Clear Paint</button>
       </div>
       <div class="canvas-wrap"><canvas id="dnaCanvas" width="900" height="560"></canvas></div>
     </section>
 
     <section class="section panel hidden" id="soundPanel">
-      <div class="stage-title"><div><h2>🎵 Sound Temple</h2><p>Tap a digit bar to hear its note, or press Play DNA for the 60-step sequence.</p></div></div>
+      <div class="stage-title"><div><h2>🎵 Sound Temple</h2><p>Tap a metallic digit bar to hear its note, or press Play DNA for the 60-step sequence.</p></div></div>
       <div class="bars" id="bars"></div>
     </section>
 
     <section class="section panel hidden" id="journeyPanel">
       <div class="stage-title"><div><h2>🧭 Guided Journey</h2><p>Walk the same idea as the uploaded hub: choose the strand, rhythm, awareness, harmony, then enter a mode.</p></div></div>
       <div class="journey">
-        <article class="journey-card"><h3>1. Awaken the Seed</h3><p>Use the seed controls below: Red Fire, Black Earth, or Blue Water. Each strand changes every visual and melody.</p></article>
-        <article class="journey-card"><h3>2. Set the Rhythm</h3><p>Tempo controls how fast the DNA melody plays through the 60 digits.</p></article>
-        <article class="journey-card"><h3>3. Deepen Awareness</h3><p>Awareness changes how strongly particles follow your cursor in the field mode.</p></article>
-        <article class="journey-card"><h3>4. Choose Harmony</h3><p>Harmony changes the number of spiral arms and mandala symmetry lines.</p></article>
+        <article class="journey-card"><h3>1. Awaken the Pearl</h3><p>Digit 0 is now a pearl gate. It glows brighter than the other digits and acts like the reset / opening symbol.</p></article>
+        <article class="journey-card"><h3>2. Choose the Strand</h3><p>Red, Black and Blue each have their own symbolic metallic peacock skin and sound colour.</p></article>
+        <article class="journey-card"><h3>3. Deepen Awareness</h3><p>Awareness changes how strongly the conscious particles notice your cursor, gather, orbit, resist and reconnect.</p></article>
+        <article class="journey-card"><h3>4. Tune Harmony</h3><p>Harmony changes spiral arms, mandala symmetry and the feel of the living field.</p></article>
       </div>
     </section>
 
     <section class="section panel fixed-controls">
       <div class="controls">
-        <div class="control">
+        <div class="control seed-control">
           <span>DNA Seed</span>
           <div class="seed-row">
-            <button class="seed-btn active" data-seed="red" type="button" title="Red / Fire" style="background:#ff4444"></button>
-            <button class="seed-btn" data-seed="black" type="button" title="Black / Earth" style="background:#111"></button>
-            <button class="seed-btn" data-seed="blue" type="button" title="Blue / Water" style="background:#4444ff"></button>
+            <button class="seed-btn seed-red active" data-seed="red" type="button" title="Ruby Peacock Fire"><b>☉</b><small>Red</small></button>
+            <button class="seed-btn seed-black" data-seed="black" type="button" title="Obsidian Peacock Mirror"><b>◈</b><small>Black</small></button>
+            <button class="seed-btn seed-blue" data-seed="blue" type="button" title="Sapphire Peacock Water"><b>✺</b><small>Blue</small></button>
           </div>
         </div>
         <label class="control">Harmony <output id="harmonyOut">7</output><input id="harmony" type="range" min="3" max="12" value="7"></label>
@@ -88,12 +106,12 @@
     </section>
 
     <section class="section panel">
-      <details>
-        <summary class="kicker" style="cursor:pointer">About this experience</summary>
-        <p class="smallprint">Adapted from the uploaded DigitalDNAHub React concept into a static HTML/Canvas/Web Audio page for this app. The hidden Red, Black and Blue 60-digit seeds drive the visuals and sounds. Choose your seed, paint on the mandala, guide the particles with your cursor, and play the 60-note digital dharma.</p>
+      <details open>
+        <summary class="kicker" style="cursor:pointer">About this upgraded experience</summary>
+        <p class="smallprint">Adapted from the uploaded DigitalDNAHub React concept into a static HTML/Canvas/Web Audio page for this app. The Red, Black and Blue 60-digit seeds now drive peacock metallic colours, symbols, sound tones and a stronger conscious particle field. Choose your seed, paint on the mandala, guide the particles with your cursor, and play the 60-note digital dharma.</p>
       </details>
     </section>
   </main>
-  <script src="app.js"></script>
+  <script src="app.js?v=peacock-v2"></script>
 </body>
 </html>
