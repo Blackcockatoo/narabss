@@ -6,12 +6,23 @@
   <title>Nara's Colour Quest — Baby B$S Arcade</title>
   <meta name="description" content="A Blue Snake Studios Junior colouring-book arcade with Nara songs, eight games and a beat maker.">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero-creature{
+      font-size:clamp(80px,14vw,160px);line-height:1;text-align:center;
+      filter:drop-shadow(0 0 30px rgba(51,170,255,0.5));
+      animation:float 3s ease-in-out infinite;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      height:100%;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .glow-title{text-shadow:0 0 60px rgba(187,102,255,0.25),0 0 120px rgba(51,170,255,0.1)}
+  </style>
 </head>
 <body>
   <main class="site-shell">
     <header class="topbar">
       <a class="brand" href="index.html" aria-label="Nara's Colour Quest home">
-        <span class="brand-mark">$</span>
+        <span class="brand-mark">B$S</span>
         <span>Nara's Colour Quest<br><small>Blue Snake Studios Junior</small></span>
       </a>
       <nav class="nav" aria-label="Main navigation">
@@ -33,8 +44,8 @@
           <a class="button orange" href="games/dino-dash/index.html">Enter Dino Cave</a>
         </div>
       </div>
-      <figure class="hero-card" aria-label="Hero image">
-        <img src="assets/images/hero-boy-feather.svg" alt="Colouring-book hero character with feather">
+      <figure class="hero-card" aria-label="Hero creature">
+        <div class="hero-creature" role="img" aria-label="Blue snake mascot">🐍<br><small style="font-size:.4em;opacity:.7">✦ B$S ✦</small></div>
       </figure>
       <aside class="status-strip" aria-label="Build status">
         <span><b>8</b> playable games</span>
@@ -47,7 +58,7 @@
     <section class="section portal-wrap" aria-label="Colour Quest portals">
       <div class="section-title">
         <h2>Quest Portals</h2>
-        <span class="badge">soft, weird, safe</span>
+        <span class="badge">soft · weird · safe</span>
       </div>
       <div class="portal-grid">
         <a class="portal-card portal-gold" href="music.html"><span class="portal-icon">🔥</span><h3>Lost in the Fire</h3><p>Two songs written by Nara, wrapped as colour-along tracks with play buttons.</p><span class="tag">Music Room</span></a>

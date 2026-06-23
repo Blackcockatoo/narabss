@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Colour Lab — Nara's Colour Quest</title>
+  <style>
+    :root{--paper:#080612;--card:#13102a;--card-2:#1a1538;--ink:#e8d4b8;--ink-dim:#7a6a8a;
+      --border:rgba(100,70,220,0.28);--blue:#33aaff;--gold:#ffcc44;--purple:#bb66ff;--moss:#44dd88}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100vh;background:var(--paper);color:var(--ink);font-family:system-ui,sans-serif}
+    .shell{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:0 0 18px}
+    .brand{text-decoration:none;font-weight:900;color:var(--blue);font-size:13px}
+    .kicker{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--moss);text-transform:uppercase;margin-bottom:6px}
+    h1{font-size:clamp(30px,6vw,56px);letter-spacing:-.06em;line-height:.9;margin-bottom:14px}
+    .lab-layout{display:grid;grid-template-columns:1fr 200px;gap:20px;align-items:start}
+    .art-wrap{border:1.5px solid var(--border);border-radius:18px;overflow:hidden;
+      background:#0a0816;box-shadow:0 0 40px rgba(0,0,0,.8);padding:20px}
+    .svg-art{width:100%;max-width:440px;display:block;margin:0 auto;cursor:pointer}
+    .svg-art .region{cursor:pointer;stroke-width:2;stroke:rgba(200,180,255,0.5);
+      transition:filter .2s;fill:#1a1538}
+    .svg-art .region:hover{filter:brightness(1.3)}
+    .svg-art .region.colored{stroke:rgba(255,255,255,0.3)}
+    .ctrl{display:flex;flex-direction:column;gap:14px}
+    .palette-section{border:1.5px solid var(--border);border-radius:14px;padding:14px;background:var(--card)}
+    .ctrl-label{font-size:10px;font-weight:900;letter-spacing:.12em;color:var(--ink-dim);
+      text-transform:uppercase;margin-bottom:10px;display:block}
+    .palette{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+    .swatch{aspect-ratio:1;border-radius:10px;cursor:pointer;border:2px solid transparent;
+      transition:transform .12s,border-color .12s}
+    .swatch:hover{transform:scale(1.1)}
+    .swatch.active{border-color:#fff;box-shadow:0 0 12px currentColor}
+    .tools-row{display:flex;flex-direction:column;gap:8px}
+    .tool-btn{padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);
+      background:rgba(255,255,255,.04);color:var(--ink-dim);font-weight:800;cursor:pointer;
+      font-size:12px;font-family:inherit;transition:border-color .15s,color .15s;text-align:left}
+    .tool-btn:hover{border-color:var(--blue);color:var(--blue)}
+    .tool-btn.erase:hover{border-color:#ff4466;color:#ff4466}
+    .selected-color{width:100%;aspect-ratio:2/1;border-radius:10px;border:1.5px solid var(--border);
+      margin-bottom:4px;transition:background .2s}
+    .progress-label{font-size:12px;font-weight:800;color:var(--ink-dim);margin-top:4px}
+    @media(max-width:600px){.lab-layout{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">← Home</a>
+    </header>
+    <p class="kicker">Baby B$S · Colouring</p>
+    <h1>Colour Lab</h1>
+    <div class="lab-layout">
+      <div class="art-wrap">
+        <svg class="svg-art" id="art" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background -->
+          <rect class="region" id="bg" x="0" y="0" width="440" height="440" rx="20"/>
+          <!-- Outer ring petals -->
+          <ellipse class="region" id="petal1" cx="220" cy="80" rx="38" ry="65" transform="rotate(0 220 220)"/>
+          <ellipse class="region" id="petal2" cx="220" cy="80" rx="38" ry="65" transform="rotate(60 220 220)"/>
+          <ellipse class="region" id="petal3" cx="220" cy="80" rx="38" ry="65" transform="rotate(120 220 220)"/>
+          <ellipse class="region" id="petal4" cx="220" cy="80" rx="38" ry="65" transform="rotate(180 220 220)"/>
+          <ellipse class="region" id="petal5" cx="220" cy="80" rx="38" ry="65" transform="rotate(240 220 220)"/>
+          <ellipse class="region" id="petal6" cx="220" cy="80" rx="38" ry="65" transform="rotate(300 220 220)"/>
+          <!-- Middle ring -->
+          <ellipse class="region" id="mpetal1" cx="220" cy="120" rx="24" ry="42" transform="rotate(30 220 220)"/>
+          <ellipse class="region" id="mpetal2" cx="220" cy="120" rx="24" ry="42" transform="rotate(90 220 220)"/>
+          <ellipse class="region" id="mpetal3" cx="220" cy="120" rx="24" ry="42" transform="rotate(150 220 220)"/>
+          <ellipse class="region" id="mpetal4" cx="220" cy="120" rx="24" ry="42" transform="rotate(210 220 220)"/>
+          <ellipse class="region" id="mpetal5" cx="220" cy="120" rx="24" ry="42" transform="rotate(270 220 220)"/>
+          <ellipse class="region" id="mpetal6" cx="220" cy="120" rx="24" ry="42" transform="rotate(330 220 220)"/>
+          <!-- Face body -->
+          <circle class="region" id="face" cx="220" cy="220" r="80"/>
+          <!-- Eyes -->
+          <ellipse class="region" id="eye-left" cx="196" cy="204" rx="14" ry="18"/>
+          <ellipse class="region" id="eye-right" cx="244" cy="204" rx="14" ry="18"/>
+          <!-- Pupils (fixed) -->
+          <circle fill="rgba(0,0,0,0.8)" cx="196" cy="207" r="7" pointer-events="none"/>
+          <circle fill="rgba(0,0,0,0.8)" cx="244" cy="207" r="7" pointer-events="none"/>
+          <circle fill="rgba(255,255,255,0.7)" cx="199" cy="204" r="2.5" pointer-events="none"/>
+          <circle fill="rgba(255,255,255,0.7)" cx="247" cy="204" r="2.5" pointer-events="none"/>
+          <!-- Mouth -->
+          <path class="region" id="mouth" d="M196 238 Q220 258 244 238" stroke-linecap="round" fill="none"/>
+          <!-- Cheeks -->
+          <ellipse class="region" id="cheek-l" cx="182" cy="230" rx="16" ry="10"/>
+          <ellipse class="region" id="cheek-r" cx="258" cy="230" rx="16" ry="10"/>
+          <!-- Horns -->
+          <polygon class="region" id="horn-l" points="196,145 182,100 210,140"/>
+          <polygon class="region" id="horn-r" points="244,145 258,100 230,140"/>
+          <!-- Stars -->
+          <text x="40" y="70" font-size="28" class="region" id="star1" text-anchor="middle">⭐</text>
+          <text x="400" y="70" font-size="28" class="region" id="star2" text-anchor="middle">✦</text>
+          <text x="40" y="400" font-size="28" class="region" id="star3" text-anchor="middle">🌸</text>
+          <text x="400" y="400" font-size="28" class="region" id="star4" text-anchor="middle">🌙</text>
+        </svg>
+      </div>
+      <div class="ctrl">
+        <div class="palette-section">
+          <span class="ctrl-label">Active colour</span>
+          <div class="selected-color" id="selectedColor" style="background:#33aaff"></div>
+          <span class="ctrl-label">Palette</span>
+          <div class="palette" id="palette"></div>
+        </div>
+        <div class="palette-section">
+          <span class="ctrl-label">Tools</span>
+          <div class="tools-row">
+            <button class="tool-btn erase" onclick="setErase()">✕ Erase region</button>
+            <button class="tool-btn" onclick="clearAll()">↺ Clear all</button>
+            <button class="tool-btn" onclick="downloadArt()" style="border-color:var(--moss);color:var(--moss)">↓ Save as PNG</button>
+          </div>
+          <p class="progress-label" id="progress">0 / 16 regions coloured</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const PALETTE=['#33aaff','#ffcc44','#bb66ff','#44dd88','#ff8844','#ff6688','#e8d4b8','#ffffff',
+      '#1166cc','#cc8800','#7722cc','#226622','#cc4400','#cc2244','#8a7a6a','#000000'];
+    let activeColor='#33aaff', eraseMode=false;
+    const colored={};
+
+    function buildPalette() {
+      const pal=document.getElementById('palette');
+      pal.innerHTML=PALETTE.map((c,i)=>
+        `<div class="swatch${i===0?' active':''}" style="background:${c};color:${c}"
+          onclick="pickColor('${c}',this)" title="${c}"></div>`
+      ).join('');
+    }
+
+    function pickColor(c,el) {
+      activeColor=c; eraseMode=false;
+      document.getElementById('selectedColor').style.background=c;
+      document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function setErase() { eraseMode=true; }
+    function clearAll() {
+      document.querySelectorAll('.region').forEach(r=>{ r.style.fill=''; r.classList.remove('colored'); });
+      Object.keys(colored).forEach(k=>delete colored[k]);
+      updateProgress();
+    }
+
+    document.getElementById('art').addEventListener('click', e=>{
+      const el=e.target.closest('.region');
+      if (!el) return;
+      if (eraseMode) {
+        el.style.fill=''; el.classList.remove('colored');
+        delete colored[el.id];
+      } else {
+        el.style.fill=activeColor; el.classList.add('colored');
+        colored[el.id]=activeColor;
+      }
+      updateProgress();
+    });
+
+    function updateProgress() {
+      const n=Object.keys(colored).length;
+      document.getElementById('progress').textContent=`${n} / 16 regions coloured`;
+    }
+
+    function downloadArt() {
+      const svg=document.getElementById('art');
+      const xml=new XMLSerializer().serializeToString(svg);
+      const blob=new Blob([xml],{type:'image/svg+xml'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');
+      a.download='colour-lab-creature.svg'; a.href=url; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    buildPalette();
+  </script>
+</body>
+</html>

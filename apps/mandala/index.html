@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>ASMR Mandala Drawer — Nara's Colour Quest</title>
+  <meta name="description" content="Draw glowing fractal snowflake mandalas with 2-9 slice symmetry and soft ASMR sounds.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="mandala-shell">
+    <header class="mbar">
+      <a class="brand" href="../../index.html">← Home</a>
+      <div class="mbar-title">✦ ASMR Mandala Drawer</div>
+      <div class="mbar-right">
+        <button id="guide-toggle" class="tool-btn" title="Guide lines">⊕ Guides</button>
+        <button id="clear-btn" class="tool-btn danger" title="Clear canvas">✕ Clear</button>
+        <button id="download-btn" class="tool-btn accent" title="Download">↓ Save</button>
+      </div>
+    </header>
+
+    <div class="mandala-body">
+      <aside class="ctrl-panel" id="ctrl-panel">
+        <button class="panel-toggle" id="panel-toggle" aria-label="Toggle panel">⋮</button>
+
+        <section class="ctrl-section">
+          <label class="ctrl-label">SYMMETRY</label>
+          <div class="slice-grid">
+            <button class="slice-btn" data-slices="2">2</button>
+            <button class="slice-btn" data-slices="3">3</button>
+            <button class="slice-btn" data-slices="4">4</button>
+            <button class="slice-btn" data-slices="5">5</button>
+            <button class="slice-btn active" data-slices="6">6</button>
+            <button class="slice-btn" data-slices="7">7</button>
+            <button class="slice-btn" data-slices="8">8</button>
+            <button class="slice-btn" data-slices="9">9</button>
+          </div>
+          <div class="toggle-row">
+            <label class="toggle-label">
+              <input type="checkbox" id="snowflake-toggle" checked>
+              <span class="toggle-track"></span>
+              <span>Snowflake mirror</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="ctrl-section">
+          <label class="ctrl-label">COLOUR</label>
+          <div class="color-row">
+            <button class="color-swatch active" data-color="#33aaff" style="--c:#33aaff" title="Blue"></button>
+            <button class="color-swatch" data-color="#ffcc44" style="--c:#ffcc44" title="Gold"></button>
+            <button class="color-swatch" data-color="#bb66ff" style="--c:#bb66ff" title="Purple"></button>
+            <button class="color-swatch" data-color="#44dd88" style="--c:#44dd88" title="Green"></button>
+            <button class="color-swatch" data-color="#ff8844" style="--c:#ff8844" title="Orange"></button>
+            <button class="color-swatch" data-color="#ff6688" style="--c:#ff6688" title="Pink"></button>
+            <button class="color-swatch" data-color="#ffffff" style="--c:#ffffff" title="White"></button>
+            <button class="color-swatch" data-color="#e8d4b8" style="--c:#e8d4b8" title="Cream"></button>
+          </div>
+          <label class="ctrl-label" style="margin-top:8px">Custom</label>
+          <input type="color" id="custom-color" value="#33aaff" class="color-picker">
+        </section>
+
+        <section class="ctrl-section">
+          <label class="ctrl-label">BRUSH SIZE <output id="brush-size-out">4</output>px</label>
+          <input type="range" id="brush-size" min="1" max="24" value="4" class="slider">
+          <label class="ctrl-label" style="margin-top:10px">OPACITY <output id="opacity-out">100%</output></label>
+          <input type="range" id="opacity" min="0.05" max="1" step="0.05" value="1" class="slider">
+        </section>
+
+        <section class="ctrl-section">
+          <label class="ctrl-label">ASMR SOUND</label>
+          <div class="toggle-row">
+            <label class="toggle-label">
+              <input type="checkbox" id="audio-toggle" checked>
+              <span class="toggle-track"></span>
+              <span>Soft tones</span>
+            </label>
+          </div>
+          <p class="ctrl-note">Gentle sounds as you draw. Headphones recommended ✦</p>
+        </section>
+
+        <section class="ctrl-section">
+          <label class="ctrl-label">PREVIEW</label>
+          <canvas id="preview-canvas" width="120" height="120" class="preview-canvas"></canvas>
+        </section>
+      </aside>
+
+      <div class="canvas-area">
+        <div id="canvas-wrap" class="canvas-wrap">
+          <canvas id="draw-canvas"></canvas>
+          <canvas id="guide-canvas"></canvas>
+        </div>
+        <p class="canvas-hint" id="canvas-hint">Draw anywhere · <span id="hint-slices">6</span>-way symmetry · snowflake on</p>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
