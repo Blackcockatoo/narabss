@@ -4,59 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nara's Colour Quest — B$S Arcade</title>
-  <meta name="description" content="A kid-safe Blue Snake Studios arcade with Nara songs, printable colouring pages, Dino Dash, Mystic Cube, Digital DNA tools, Zombie Rescue and a tiny beat maker lab.">
-  <link rel="canonical" href="https://blkck2.com/">
-  <meta name="theme-color" content="#080612">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Nara's Colour Quest — B$S Arcade">
-  <meta property="og:description" content="Printable, playable, soft-weird and kid-safe: songs, colouring pages, games, Mystic Cube, Digital DNA and B$S studio portals.">
-  <meta property="og:url" content="https://blkck2.com/">
-  <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"Nara's Colour Quest — B$S Arcade",
-    "url":"https://blkck2.com/",
-    "description":"A kid-safe Blue Snake Studios arcade with Nara songs, printable colouring pages, Dino Dash, Mystic Cube, Digital DNA tools, Zombie Rescue and a tiny beat maker lab.",
-    "creator":{"@type":"Organization","name":"Blue Snake Studios"},
-    "inLanguage":"en-AU"
-  }
-  </script>
+  <meta name="description" content="A Blue Snake Studios arcade with Nara songs, printable pages, brand kit, games, Mystic Cube, Zombie Rescue, Digital DNA and a beat maker.">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .skip-link{position:absolute;left:18px;top:-60px;z-index:99;background:#ffcc44;color:#080612;padding:12px 16px;border-radius:999px;font-weight:1000;text-decoration:none;box-shadow:0 0 24px rgba(255,204,68,.4)}
-    .skip-link:focus{top:18px}
-    a:focus-visible,.button:focus-visible{outline:3px solid #ffcc44;outline-offset:4px}
-    @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}}
     .hero-creature{font-size:clamp(80px,14vw,160px);line-height:1;text-align:center;filter:drop-shadow(0 0 30px rgba(51,170,255,0.5));animation:float 3s ease-in-out infinite;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
     .glow-title{text-shadow:0 0 60px rgba(187,102,255,0.25),0 0 120px rgba(51,170,255,0.1)}
-    .start-here{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch;margin-top:34px}
-    .start-card,.next-card{border:1.5px solid var(--border);border-radius:30px;background:linear-gradient(135deg,rgba(51,170,255,.08),rgba(187,102,255,.08));box-shadow:var(--shadow);padding:24px;overflow:hidden;position:relative}
-    .start-card::before,.next-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 10%,rgba(255,204,68,.1),transparent 45%);pointer-events:none}
-    .start-card>* , .next-card>*{position:relative}
-    .start-card h2,.next-card h2{font-size:clamp(30px,5vw,62px);margin-bottom:12px}
-    .start-card p,.next-card p{color:var(--ink-dim);font-weight:650;line-height:1.5;margin:0 0 18px}
-    .route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-    .route-tile{border:1.5px solid rgba(255,255,255,.08);border-radius:22px;background:rgba(255,255,255,.035);padding:16px;text-decoration:none;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .14s,border-color .14s,box-shadow .14s}
-    .route-tile:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:var(--glow-blue)}
-    .route-tile b{display:block;font-size:19px;color:var(--ink);margin-bottom:8px}
-    .route-tile span{font-size:38px;line-height:1}
-    .route-tile small{color:var(--ink-dim);font-weight:750;line-height:1.35}
-    .proof-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
-    .proof-rail span{border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(255,255,255,.03);padding:12px;font-weight:900;color:var(--ink-dim)}
-    .proof-rail b{display:block;color:var(--gold);font-size:20px}
-    .next-list{display:grid;gap:10px;margin:16px 0 0;padding:0;list-style:none}
-    .next-list li{border:1px dashed rgba(255,255,255,.1);border-radius:16px;padding:12px 14px;color:var(--ink-dim);font-weight:750;background:rgba(0,0,0,.12)}
-    .next-list strong{color:var(--moss)}
-    @media(max-width:880px){.start-here{grid-template-columns:1fr}.route-grid{grid-template-columns:1fr}.proof-rail{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.proof-rail{grid-template-columns:1fr}.start-card,.next-card{border-radius:22px;padding:18px}}
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to portals</a>
-  <main id="main-content" class="site-shell">
+  <main class="site-shell">
     <header class="topbar">
       <a class="brand" href="index.html" aria-label="Nara's Colour Quest home"><span class="brand-mark">B$S</span><span>Nara's Colour Quest<br><small>Blue Snake Studios</small></span></a>
       <nav class="nav" aria-label="Main navigation"><a href="music.html">Music Room</a><a href="brand-kit.html">Brand Kit</a><a href="bss-signal-gallery.html">Signal Gallery</a><a href="dna.html?v=peacock-v3">DNA Hub</a><a href="apps/digital-dna/lab.html">DNA Lab</a><a href="apps/mystic-cube/index.html">Mystic Cube</a><a href="apps/zombie-attack/index.html">Zombie Rescue</a><a href="colouring-pages.html">Print Pages</a><a href="apps/beat-maker/index.html">Beat Maker</a><a href="games/dino-dash/index.html">Dino Dash</a></nav>
@@ -78,30 +35,6 @@
       </div>
       <figure class="hero-card" aria-label="Hero creature"><div class="hero-creature" role="img" aria-label="Blue snake mascot">🐍<br><small style="font-size:.4em;opacity:.7">✦ B$S ✦</small></div></figure>
       <aside class="status-strip" aria-label="Build status"><span><b>8+</b> games</span><span><b>3</b> brand marks</span><span><b>v3</b> DNA + Cube</span><span><b>1</b> signal gallery</span></aside>
-    </section>
-
-    <section class="start-here" aria-label="Start here guide">
-      <div class="start-card">
-        <p class="kicker">Start here • choose a doorway</p>
-        <h2>One site, three clear paths.</h2>
-        <p>The arcade was getting big, so this hub now tells visitors exactly where to go: play something, print something, or open the strange B$S machine tools.</p>
-        <div class="route-grid">
-          <a class="route-tile" href="games/dino-dash/index.html"><span>🦖</span><b>Play first</b><small>Dino Dash is the easiest instant hook for kids, family and quick testers.</small></a>
-          <a class="route-tile" href="colouring-pages.html"><span>🖨️</span><b>Print first</b><small>Open the printable pages when the goal is paper, classroom, fridge-door or colouring time.</small></a>
-          <a class="route-tile" href="dna.html?v=peacock-v3"><span>🧬</span><b>Go weird</b><small>Jump into Digital DNA, Mystic Cube and B$S signal tools for the deeper studio layer.</small></a>
-        </div>
-        <div class="proof-rail" aria-label="Site proof points"><span><b>No login</b> kid-safe</span><span><b>Playable</b> browser games</span><span><b>Printable</b> pages</span><span><b>Studio</b> controlled</span></div>
-      </div>
-      <aside class="next-card">
-        <p class="kicker">Next best builds</p>
-        <h2>Beyond pass.</h2>
-        <p>Highest-leverage upgrades after this: make the homepage index better, add a lightweight app directory, then turn the best pieces into share cards.</p>
-        <ul class="next-list">
-          <li><strong>1.</strong> Add thumbnails/screenshots to every portal card so the site sells itself visually.</li>
-          <li><strong>2.</strong> Add a tiny “parent / teacher / kid” filter so visitors know what each thing is for.</li>
-          <li><strong>3.</strong> Add share-card images for socials and QR-code posters for the strongest entry points.</li>
-        </ul>
-      </aside>
     </section>
 
     <section class="section portal-wrap" aria-label="Colour Quest portals">
